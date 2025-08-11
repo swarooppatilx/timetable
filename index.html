@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Timetable</title>
+    <meta name="description"
+        content="A clean, responsive, offline-first timetable and attendance tracker with a neo-brutalist design.">
+    <meta name="theme-color" content="#f5f5f5">
+    <meta name="keywords" content="timetable, schedule, attendance tracker, neo-brutalist, offline app">
+    <meta name="author" content="Swaroop">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://your-domain.com/">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta property="og:title" content="Timetable">
+    <meta property="og:description"
+        content="A responsive, offline-first timetable and attendance tracker with a neo-brutalist design.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:image" content="https://your-domain.com/preview-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Timetable">
+    <meta name="twitter:description" content="A responsive, offline-first timetable and attendance tracker.">
+    <meta name="twitter:image" content="https://your-domain.com/preview-image.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="p-2 sm:p-4 md:p-6">
+
+    <div id="toast" class="card bg-green-500 text-white font-bold p-4 flex items-center gap-2">
+        <i data-lucide="check-circle" id="toast-icon"></i>
+        <span>Saved!</span>
+    </div>
+
+    <div class="container mx-auto max-w-7xl">
+        <header class="text-center mb-4">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-wider">Timetable</h1>
+        </header>
+
+        <div id="selectors" class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 mb-4">
+            <div class="flex items-center gap-2">
+                <label for="classSelector" class="font-bold text-sm">CLASS:</label>
+                <select id="classSelector" class="card text-sm p-1 font-bold"></select>
+            </div>
+            <div class="flex items-center gap-2">
+                <label for="batchSelector" class="font-bold text-sm">BATCH:</label>
+                <select id="batchSelector" class="card text-sm p-1 font-bold"></select>
+            </div>
+        </div>
+
+        <div class="mb-[-3px]">
+            <button id="timetableBtn" class="main-nav-tab">Timetable</button>
+            <button id="attendanceBtn" class="main-nav-tab">Attendance</button>
+        </div>
+
+        <main class="card p-2 sm:p-4 md:p-6 lg:p-8">
+            <div id="timetableView">
+                <div class="flex justify-center mb-6 sm:mb-8 space-x-2 sm:space-x-4">
+                    <button id="todayViewBtn" class="btn px-4 py-2 sm:px-5">Today</button>
+                    <button id="fullViewBtn" class="btn px-4 py-2 sm:px-5">Full Week</button>
+                </div>
+                <div id="todayViewContent"></div>
+                <div id="fullViewContent" class="hidden">
+                    <div id="mobileDaySelector" class="lg:hidden"></div>
+                    <div id="fullViewGrid" class="grid gap-2 sm:gap-4 lg:mt-4"></div>
+                </div>
+            </div>
+            <div id="attendanceView" class="hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <div class="lg:col-span-3">
+                        <div class="card p-2 sm:p-4">
+                            <div class="flex justify-between items-center mb-4">
+                                <button id="prev-month-btn" class="btn p-2 sm:p-3"><i
+                                        data-lucide="chevron-left"></i></button>
+                                <h2 id="month-year-header" class="text-lg sm:text-xl md:text-2xl font-bold"></h2>
+                                <button id="next-month-btn" class="btn p-2 sm:p-3"><i
+                                        data-lucide="chevron-right"></i></button>
+                            </div>
+                            <div class="calendar-grid mb-2">
+                                <div class="font-bold text-center text-xs sm:text-base">S</div>
+                                <div class="font-bold text-center text-xs sm:text-base">M</div>
+                                <div class="font-bold text-center text-xs sm:text-base">T</div>
+                                <div class="font-bold text-center text-xs sm:text-base">W</div>
+                                <div class="font-bold text-center text-xs sm:text-base">T</div>
+                                <div class="font-bold text-center text-xs sm:text-base">F</div>
+                                <div class="font-bold text-center text-xs sm:text-base">S</div>
+                            </div>
+                            <div id="calendar-grid-body" class="calendar-grid"></div>
+                        </div>
+                        <div class="card p-4 mt-8">
+                            <h3 id="day-details-header" class="font-bold text-xl mb-4">Select a day</h3>
+                            <div id="day-details-body" class="space-y-3"></div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2">
+                        <div class="card p-4">
+                            <h3 class="font-bold text-xl mb-4">Active Range</h3>
+                            <div class="space-y-4">
+                                <div><label for="start-date" class="block font-bold mb-1">Start Date</label><input
+                                        type="date" id="start-date" class="w-full card p-2"></div>
+                                <div><label for="end-date" class="block font-bold mb-1">End Date</label><input
+                                        type="date" id="end-date" class="w-full card p-2"></div>
+                                <button id="calculate-attendance-btn" class="btn w-full py-3">Calculate</button>
+                            </div>
+                            <div id="attendance-results" class="mt-6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="text-center mt-8 mb-4">
+            <button id="resetBtn" class="btn text-xs px-3 py-1 mt-4">Reset App Data</button>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    </div>
+
+    <footer class="w-full text-center text-xs py-2 opacity-80 select-none">
+        Made with <span class="text-red-500">♥</span> by 
+        <a href="https://github.com/swarooppatilx" target="_blank" class="hover:underline">Swaroop</a>
+    </footer>
+</body>
+
+</html>
