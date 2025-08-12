@@ -1086,14 +1086,14 @@ const timetableData = [
                 day: "Monday",
                 dayIndex: 1,
                 slots: [
-                    { time: "08:15-09:15", type: "lecture", subject: "DM", teacher: "MAT", room: "609", color: "#E40006" },
-                    { time: "09:15-10:15", type: "lecture", subject: "DECO", teacher: "VJD", room: "609", color: "#E4E6F2" },
-                    { time: "10:30-11:30", type: "lecture", subject: "DSA", teacher: "PPM", room: "609", color: "#0066DF" },
-                    { time: "11:30-12:30", type: "lecture", subject: "DBMS", teacher: "PAP", room: "609", color: "#EFCA01" },
-                    { time: "13:15-14:15", type: "lecture", subject: "CCRP", teacher: "", room: "609", color: "#1E2327" },
-                    { time: "14:15-15:15", type: "lecture", subject: "CCRP", teacher: "", room: "609", color: "#1E2327" },
-                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "RNM", room: "", color: "#18A727" },
-                ],
+                    { time: "08:15-09:15", type: "lecture", subject: "DM", teacher: "MAT", room: "609", color: "#FF3B30" },
+                    { time: "09:15-10:15", type: "lecture", subject: "DECO", teacher: "VJD", room: "609", color: "#5856D6" },
+                    { time: "10:30-11:30", type: "lecture", subject: "DSA", teacher: "PPM", room: "609", color: "#007AFF" },
+                    { time: "11:30-12:30", type: "lecture", subject: "DBMS", teacher: "PAP", room: "609", color: "#FF9500" },
+                    { time: "13:15-14:15", type: "lecture", subject: "CCRP", teacher: "", room: "609", color: "#4CD964" },
+                    { time: "14:15-15:15", type: "lecture", subject: "CCRP", teacher: "", room: "609", color: "#4CD964" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "RNM", room: "", color: "#FF2D55" }
+                ]
             },
             {
                 day: "Tuesday",
@@ -1103,37 +1103,37 @@ const timetableData = [
                         time: "08:15-09:15",
                         type: "lab",
                         batches: [
-                            { name: "S1", subject: "DSAL", teacher: "PPM", room: "603", color: "#0066DF" },
-                            { name: "S3", subject: "DSAL", teacher: "MAT", room: "609", color: "#E40006" },
-                        ],
+                            { name: "S1", subject: "DSAL", teacher: "PPM", room: "603", color: "#007AFF" },
+                            { name: "S3", subject: "DSAL", teacher: "MAT", room: "609", color: "#FF3B30" }
+                        ]
                     },
                     {
                         time: "09:15-10:15",
                         type: "lab",
                         batches: [
-                            { name: "S1", subject: "DSAL", teacher: "PPM", room: "603", color: "#0066DF" },
-                            { name: "S3", subject: "DSAL", teacher: "MAT", room: "609", color: "#E40006" },
-                        ],
+                            { name: "S1", subject: "DSAL", teacher: "PPM", room: "603", color: "#007AFF" },
+                            { name: "S3", subject: "DSAL", teacher: "MAT", room: "609", color: "#FF3B30" }
+                        ]
                     },
-                    { time: "10:30-11:30", type: "lecture", subject: "DBMS", teacher: "PAP", room: "609", color: "#EFCA01" },
-                    { time: "11:30-12:30", type: "lecture", subject: "DM", teacher: "MAT", room: "609", color: "#E40006" },
-                    { time: "13:15-14:15", type: "lecture", subject: "DSA", teacher: "PPM", room: "609", color: "#0066DF" },
-                    { time: "14:15-15:15", type: "lecture", subject: "DECO", teacher: "VJD", room: "609", color: "#E4E6F2" },
-                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "RNM", room: "", color: "#18A727" },
-                ],
+                    { time: "10:30-11:30", type: "lecture", subject: "DBMS", teacher: "PAP", room: "609", color: "#FF9500" },
+                    { time: "11:30-12:30", type: "lecture", subject: "DM", teacher: "MAT", room: "609", color: "#FF3B30" },
+                    { time: "13:15-14:15", type: "lecture", subject: "DSA", teacher: "PPM", room: "609", color: "#007AFF" },
+                    { time: "14:15-15:15", type: "lecture", subject: "DECO", teacher: "VJD", room: "609", color: "#5856D6" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "RNM", room: "", color: "#FF2D55" }
+                ]
             },
             {
                 day: "Wednesday",
                 dayIndex: 3,
                 slots: [
-                    { time: "08:15-09:15", type: "lecture", subject: "DSA", teacher: "MAT", room: "609", color: "#E40006" },
-                    { time: "09:15-10:15", type: "lecture", subject: "LIBRARY", teacher: "", room: "", color: "#ffffff" },
-                    { time: "10:30-11:30", type: "lecture", subject: "DECO", teacher: "VJD", room: "609", color: "#E4E6F2" },
-                    { time: "11:30-12:30", type: "lecture", subject: "ACTIVITY", teacher: "", room: "", color: "#ffffff" },
-                    { time: "13:15-14:15", type: "lecture", subject: "Audit Course", teacher: "RRK", room: "609", color: "#000000" },
-                    { time: "14:15-15:15", type: "lecture", subject: "DEG", teacher: "RSM", room: "609", color: "#575fcf" },
-                    { time: "15:15-16:15", type: "lecture", subject: "DEG", teacher: "RSM", room: "609", color: "#575fcf" },
-                ],
+                    { time: "08:15-09:15", type: "lecture", subject: "DSA", teacher: "MAT", room: "609", color: "#FF3B30" },
+                    { time: "09:15-10:15", type: "lecture", subject: "LIBRARY", teacher: "", room: "", color: "#A2845E" },
+                    { time: "10:30-11:30", type: "lecture", subject: "DECO", teacher: "VJD", room: "609", color: "#5856D6" },
+                    { time: "11:30-12:30", type: "lecture", subject: "ACTIVITY", teacher: "", room: "", color: "#34C759" },
+                    { time: "13:15-14:15", type: "lecture", subject: "Audit Course", teacher: "RRK", room: "609", color: "#1C1C1E" },
+                    { time: "14:15-15:15", type: "lecture", subject: "DEG", teacher: "RSM", room: "609", color: "#FFCC00" },
+                    { time: "15:15-16:15", type: "lecture", subject: "DEG", teacher: "RSM", room: "609", color: "#FFCC00" }
+                ]
             },
             {
                 day: "Thursday",
@@ -1143,40 +1143,40 @@ const timetableData = [
                         time: "08:15-09:15",
                         type: "lab",
                         batches: [
-                            { name: "S1", subject: "DECOL", teacher: "VJD", room: "611", color: "#E4E6F2" },
-                            { name: "S2", subject: "DSAL", teacher: "PPM", room: "603", color: "#0066DF" },
-                            { name: "S3", subject: "DSAL", teacher: "MAT", room: "602", color: "#E40006" },
-                        ],
+                            { name: "S1", subject: "DECOL", teacher: "VJD", room: "611", color: "#5856D6" },
+                            { name: "S2", subject: "DSAL", teacher: "PPM", room: "603", color: "#007AFF" },
+                            { name: "S3", subject: "DSAL", teacher: "MAT", room: "602", color: "#FF3B30" }
+                        ]
                     },
                     {
                         time: "09:15-10:15",
                         type: "lab",
                         batches: [
-                            { name: "S1", subject: "DECOL", teacher: "VJD", room: "611", color: "#E4E6F2" },
-                            { name: "S2", subject: "DSAL", teacher: "PPM", room: "603", color: "#0066DF" },
-                            { name: "S3", subject: "DSAL", teacher: "MAT", room: "602", color: "#E40006" },
-                        ],
+                            { name: "S1", subject: "DECOL", teacher: "VJD", room: "611", color: "#5856D6" },
+                            { name: "S2", subject: "DSAL", teacher: "PPM", room: "603", color: "#007AFF" },
+                            { name: "S3", subject: "DSAL", teacher: "MAT", room: "602", color: "#FF3B30" }
+                        ]
                     },
-                    { time: "10:30-11:30", type: "lecture", subject: "DBMS", teacher: "PAP", room: "609", color: "#EFCA01" },
-                    { time: "11:30-12:30", type: "lecture", subject: "DM", teacher: "MAT", room: "609", color: "#E40006" },
+                    { time: "10:30-11:30", type: "lecture", subject: "DBMS", teacher: "PAP", room: "609", color: "#FF9500" },
+                    { time: "11:30-12:30", type: "lecture", subject: "DM", teacher: "MAT", room: "609", color: "#FF3B30" },
                     {
                         time: "13:15-14:15",
                         type: "lab",
                         batches: [
-                            { name: "S2", subject: "DECOL", teacher: "VJD", room: "611", color: "#E4E6F2" },
-                            { name: "S3", subject: "DBMSL", teacher: "PAP", room: "606-A", color: "#EFCA01" },
-                        ],
+                            { name: "S2", subject: "DECOL", teacher: "VJD", room: "611", color: "#5856D6" },
+                            { name: "S3", subject: "DBMSL", teacher: "PAP", room: "606-A", color: "#FF9500" }
+                        ]
                     },
                     {
                         time: "14:15-15:15",
                         type: "lab",
                         batches: [
-                            { name: "S2", subject: "DECOL", teacher: "VJD", room: "611", color: "#E4E6F2" },
-                            { name: "S3", subject: "DBMSL", teacher: "PAP", room: "606-A", color: "#EFCA01" },
-                        ],
+                            { name: "S2", subject: "DECOL", teacher: "VJD", room: "611", color: "#5856D6" },
+                            { name: "S3", subject: "DBMSL", teacher: "PAP", room: "606-A", color: "#FF9500" }
+                        ]
                     },
-                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#18A727" },
-                ],
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#FF2D55" }
+                ]
             },
             {
                 day: "Friday",
@@ -1186,40 +1186,40 @@ const timetableData = [
                         time: "8:15-09:15",
                         type: "lab",
                         batches: [
-                            { name: "S1", subject: "DSAL", teacher: "PPM", room: "603", color: "#0066DF" },
-                            { name: "S2", subject: "DBMSL", teacher: "PAP", room: "606-A", color: "#EFCA01" },
-                        ],
+                            { name: "S1", subject: "DSAL", teacher: "PPM", room: "603", color: "#007AFF" },
+                            { name: "S2", subject: "DBMSL", teacher: "PAP", room: "606-A", color: "#FF9500" }
+                        ]
                     },
                     {
                         time: "09:15-10:15",
                         type: "lab",
                         batches: [
-                            { name: "S1", subject: "DSAL", teacher: "PPM", room: "603", color: "#0066DF" },
-                            { name: "S2", subject: "DBMSL", teacher: "PAP", room: "606-A", color: "#EFCA01" },
-                        ],
+                            { name: "S1", subject: "DSAL", teacher: "PPM", room: "603", color: "#007AFF" },
+                            { name: "S2", subject: "DBMSL", teacher: "PAP", room: "606-A", color: "#FF9500" }
+                        ]
                     },
                     {
                         time: "10:30-11:30",
                         type: "lab",
                         batches: [
-                            { name: "S1", subject: "DBMSL", teacher: "PAP", room: "606-A", color: "#EFCA01" },
-                            { name: "S2", subject: "DSAL", teacher: "VMD", room: "603", color: "#0f664F" },
-                            { name: "S3", subject: "DECOL", teacher: "VJD", room: "611", color: "#E4E6F2" },
-                        ],
+                            { name: "S1", subject: "DBMSL", teacher: "PAP", room: "606-A", color: "#FF9500" },
+                            { name: "S2", subject: "DSAL", teacher: "VMD", room: "603", color: "#32ADE6" },
+                            { name: "S3", subject: "DECOL", teacher: "VJD", room: "611", color: "#5856D6" }
+                        ]
                     },
                     {
                         time: "11:30-12:30",
                         type: "lab",
                         batches: [
-                            { name: "S1", subject: "DBMSL", teacher: "PAP", room: "606-A", color: "#EFCA01" },
-                            { name: "S2", subject: "DSAL", teacher: "VMD", room: "603", color: "#0f664F" },
-                            { name: "S3", subject: "DECOL", teacher: "VJD", room: "611", color: "#E4E6F2" },
-                        ],
+                            { name: "S1", subject: "DBMSL", teacher: "PAP", room: "606-A", color: "#FF9500" },
+                            { name: "S2", subject: "DSAL", teacher: "VMD", room: "603", color: "#32ADE6" },
+                            { name: "S3", subject: "DECOL", teacher: "VJD", room: "611", color: "#5856D6" }
+                        ]
                     },
-                    { time: "13:15-14:15", type: "lecture", subject: "HCI MOOC", teacher: "VJD", room: "605", color: "#E4E6F2" },
-                    { time: "14:15-16:15", type: "lecture", subject: "Minor Lab", teacher: "SMS", room: "212", color: "#18A727" },
-                ],
-            },
+                    { time: "13:15-14:15", type: "lecture", subject: "HCI MOOC", teacher: "VJD", room: "605", color: "#FF5E3A" },
+                    { time: "14:15-16:15", type: "lecture", subject: "Minor Lab", teacher: "SMS", room: "212", color: "#FF2D55" }
+                ]
+            }
         ],
         timeSlots: [
             { start: "08:15", end: "09:15" },
@@ -1230,7 +1230,7 @@ const timetableData = [
             { start: "12:30", end: "13:15", label: "Lunch Break" },
             { start: "13:15", end: "14:15" },
             { start: "14:15", end: "15:15" },
-            { start: "15:15", end: "16:15" },
-        ],
-    },
+            { start: "15:15", end: "16:15" }
+        ]
+    }
 ];
