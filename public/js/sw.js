@@ -2,9 +2,9 @@ const CACHE_NAME = 'timetable-cache-v1';
 const urlsToCache = [
     '/',
     '/index.html',
-    '/style.css',
-    '/app.js',
-    '/data.js',
+    '/css/style.css',
+    '/js/app.js',
+    '/js/data.js',
     '/icons/icon-192x192.png',
     '/icons/icon-512x512.png'
 ];
