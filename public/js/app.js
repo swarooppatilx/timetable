@@ -1,10 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Exam periods for TY & Final Year B.Tech (from provided calendar)
-    const examPeriods = {
-        insem1: { start: '2025-07-14', end: '2025-07-25' },
-        insem2: { start: '2025-08-04', end: '2025-08-14' },
-        endsem: { start: '2025-08-25', end: '2025-10-31' },
-    };
 
     const App = {
         attendanceData: {},
@@ -635,7 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.elements.attendance.detailsBody.addEventListener('click', (e) => {
                 const target = e.target.closest('button');
                 if (!target || !this.selectedDateISO) return;
-                const { action, time, status } = target.dataset;
+                const { action, time, status } = target.dataset;pdateTimetableCues
                 const date = new Date(this.selectedDateISO.replace(/-/g, '/'));
                 if (action === 'mark-all-present' || action === 'mark-all-absent') {
                     const bulkStatus = action.includes('present') ? 'present' : 'absent';
