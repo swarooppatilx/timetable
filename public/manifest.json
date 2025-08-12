@@ -1,7 +1,7 @@
 {
     "name": "Timetable",
     "short_name": "Timetable",
-    "description": "A clean, responsive, offline-first timetable and attendance tracker with a neo-brutalist design.",
+    "description": "A clean, responsive, minimalist timetable and attendance tracker with a neo-brutalist design.",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#f5f5f5",
