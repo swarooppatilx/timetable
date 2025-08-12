@@ -64,7 +64,7 @@
     <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapispis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Icons & Scripts -->
@@ -72,7 +72,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Google tag (gtag.js) -->
+     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJQTGJ65HD"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -81,6 +81,7 @@
 
         gtag('config', 'G-GJQTGJ65HD');
     </script>
+
 
 </head>
 
@@ -155,6 +156,15 @@
                     <div class="lg:col-span-2">
                         <div class="card p-4">
                             <h3 class="font-bold text-xl mb-4">Active Range</h3>
+                            <!-- Exam Selector moved here -->
+                            <div class="mb-4 flex items-center gap-2">
+                                <label for="examSelector" class="font-bold text-sm">Exam:</label>
+                                <select id="examSelector" class="card text-sm p-1 font-bold">
+                                    <option value="insem1">Insem-1</option>
+                                    <option value="insem2">Insem-2</option>
+                                    <option value="endsem">Endsem</option>
+                                </select>
+                            </div>
                             <div class="space-y-4">
                                 <div><label for="start-date" class="block font-bold mb-1">Start Date</label><input
                                         type="date" id="start-date" class="w-full card p-2"></div>
@@ -179,7 +189,7 @@
     </div>
 
     <footer class="w-full text-center text-xs py-2 opacity-80 select-none">
-        Made with <span class="text-red-500">♥</span> by
+        Made with <span class="text-red-500">♥</span> by 
         <a href="https://github.com/swarooppatilx" target="_blank" class="hover:underline">Swaroop</a>
     </footer>
 </body>

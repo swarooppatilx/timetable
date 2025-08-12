@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Exam periods for TY & Final Year B.Tech (from provided calendar)
+    const examPeriods = {
+        insem1: { start: '2025-07-14', end: '2025-07-25' },
+        insem2: { start: '2025-08-04', end: '2025-08-14' },
+        endsem: { start: '2025-08-25', end: '2025-10-31' },
+    };
+
     const App = {
         attendanceData: {},
         calendarDate: new Date(),
@@ -31,7 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 startDate: document.getElementById('start-date'),
                 endDate: document.getElementById('end-date'),
                 calculateBtn: document.getElementById('calculate-attendance-btn'),
-                results: document.getElementById('attendance-results')
+                results: document.getElementById('attendance-results'),
+                examSelector: document.getElementById('examSelector'),
+                examPeriodInfo: document.getElementById('exam-period-info'),
             },
         },
         timeToMinutes: function (t) {
@@ -403,14 +412,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         },
         renderCalendar: function () {
-            const { gridBody, monthYearHeader, startDate, endDate } = this.elements.attendance;
+            const { gridBody, monthYearHeader } = this.elements.attendance;
             gridBody.innerHTML = '';
+            const semesterStart = new Date('2025-07-14');
+            const semesterEnd = new Date('2025-10-31');
             const year = this.calendarDate.getFullYear(), month = this.calendarDate.getMonth();
             monthYearHeader.textContent = `${this.calendarDate.toLocaleString('default', { month: 'long' })} ${year}`;
             const firstDayOfMonth = new Date(year, month, 1).getDay();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
-            const rangeStart = new Date(startDate.value); rangeStart.setHours(0, 0, 0, 0);
-            const rangeEnd = new Date(endDate.value); rangeEnd.setHours(0, 0, 0, 0);
             for (let i = 0; i < firstDayOfMonth; i++) gridBody.innerHTML += '<div></div>';
             for (let day = 1; day <= daysInMonth; day++) {
                 const date = new Date(year, month, day); date.setHours(0, 0, 0, 0);
@@ -422,14 +431,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 cell.textContent = day;
                 cell.dataset.iso = iso;
                 const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-                const isWithinRange = date >= rangeStart && date <= rangeEnd;
-                if (isWeekend || !isWithinRange) { cell.classList.add('disabled-day'); cell.disabled = true; }
-                else {
-                    const periods = dayData ? Object.values(dayData.periods).filter(Boolean) : [];
-                    if (periods.length > 0) {
-                        if (periods.every(p => p === 'present')) cell.classList.add('present');
-                        else cell.classList.add('absent');
-                    }
+                // Only enable semester dates, others are disabled
+                if (date < semesterStart || date > semesterEnd || isWeekend) {
+                    cell.classList.add('disabled-day');
+                    cell.disabled = true;
+                } else {
+                    cell.disabled = false;
+                }
+                const periods = dayData ? Object.values(dayData.periods).filter(Boolean) : [];
+                if (periods.length > 0) {
+                    if (periods.every(p => p === 'present')) cell.classList.add('present');
+                    else cell.classList.add('absent');
                 }
                 if (iso === this.selectedDateISO) cell.classList.add('selected');
                 cell.addEventListener('click', () => { this.selectedDateISO = iso; this.renderDayDetails(date); this.renderCalendar(); });
@@ -438,17 +450,22 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         renderDayDetails: function (date) {
             const currentClassData = this.getCurrentClassData();
-            const { detailsHeader, detailsBody, startDate, endDate } = this.elements.attendance;
+            const { detailsHeader, detailsBody } = this.elements.attendance;
             const iso = this.dateToISO(date);
             const dayIndex = date.getDay();
-            const daySchedule = currentClassData.days.find(d => d.dayIndex === dayIndex);
+            const semesterStart = new Date('2025-07-14');
+            const semesterEnd = new Date('2025-10-31');
             detailsHeader.textContent = `MARKING / ${date.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' })}`;
             detailsBody.innerHTML = '';
-            const rangeStart = new Date(startDate.value); rangeStart.setHours(0, 0, 0, 0);
-            const rangeEnd = new Date(endDate.value); rangeEnd.setHours(0, 0, 0, 0);
-            const checkDate = new Date(date); checkDate.setHours(0, 0, 0, 0);
-            if (!(checkDate >= rangeStart && checkDate <= rangeEnd)) { detailsBody.innerHTML = `<p class="text-gray-500 text-center font-bold">DATE IS OUTSIDE THE ACTIVE MARKING RANGE.</p>`; return; }
-            if (!daySchedule || !daySchedule.slots || daySchedule.slots.length === 0) { detailsBody.innerHTML = `<p class="text-gray-500 text-center font-bold">${daySchedule ? 'No classes scheduled.' : "IT'S THE WEEKEND."}</p>`; return; }
+            if (date < semesterStart || date > semesterEnd) {
+                detailsBody.innerHTML = `<p class="text-gray-500 text-center font-bold">No timetable for this date. New semester will start after this period.</p>`;
+                return;
+            }
+            const daySchedule = currentClassData.days.find(d => d.dayIndex === dayIndex);
+            if (!daySchedule || !daySchedule.slots || daySchedule.slots.length === 0) {
+                detailsBody.innerHTML = `<p class="text-gray-500 text-center font-bold">${daySchedule ? 'No classes scheduled.' : "IT'S THE WEEKEND."}</p>`;
+                return;
+            }
             if (!this.attendanceData[iso]) this.attendanceData[iso] = { status: null, periods: {} };
             const overallStatus = this.attendanceData[iso].status;
             const bulkActionsEl = document.createElement('div');
@@ -473,9 +490,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         },
         calculateAttendance: function () {
-            const { startDate, endDate, results } = this.elements.attendance;
-            const start = startDate.value, end = endDate.value;
-            if (!start || !end) { results.innerHTML = `<p class="text-red-600 font-bold">SELECT BOTH DATES.</p>`; return; }
+            // Get selected exam
+            const exam = this.elements.attendance.examSelector ? this.elements.attendance.examSelector.value : 'insem1';
+            const period = examPeriods[exam];
+            // Use period.start and period.end for filtering attendance
+            // If custom dates are set, override
+            let start = this.elements.attendance.startDate.value || period.start;
+            let end = this.elements.attendance.endDate.value || period.end;
+            if (!start || !end) { this.elements.attendance.results.innerHTML = `<p class="text-red-600 font-bold">SELECT BOTH DATES.</p>`; return; }
             let totalHeld = 0, totalAttended = 0; const subjectStats = {};
             const currentClassData = this.getCurrentClassData();
             for (let d = new Date(start); d <= new Date(end); d.setDate(d.getDate() + 1)) {
@@ -504,12 +526,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
             const totalPercent = totalHeld > 0 ? (totalAttended / totalHeld * 100).toFixed(1) : "0.0";
-            let html = `<h4 class="font-bold text-lg mb-3">OVERALL: ${totalAttended}/${totalHeld} (${totalPercent}%)</h4><div class="space-y-2 text-sm">`;
+            let html = `<h4 class="font-bold text-lg mb-3">${exam.toUpperCase()} (${period.start} to ${period.end})<br>OVERALL: ${totalAttended}/${totalHeld} (${totalPercent}%)</h4><div class="space-y-2 text-sm">`;
             Object.entries(subjectStats).forEach(([subject, stats]) => {
                 const percent = stats.held > 0 ? (stats.attended / stats.held * 100).toFixed(1) : "0.0";
                 html += `<p><strong class="font-bold">${subject}:</strong> ${stats.attended}/${stats.held} (${percent}%)</p>`;
             });
-            results.innerHTML = html + `</div>`;
+            this.elements.attendance.results.innerHTML = html + `</div>`;
         },
         handleBulkMark: function (bulkStatus) {
             if (!this.selectedDateISO) return;
@@ -542,12 +564,30 @@ document.addEventListener('DOMContentLoaded', () => {
             const today = new Date();
             this.selectedDateISO = this.dateToISO(today);
             this.calendarDate = today;
-            const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
-            const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-            this.elements.attendance.startDate.value = this.dateToISO(firstDay);
-            this.elements.attendance.endDate.value = this.dateToISO(lastDay);
+            // Set exam selector and period info
+            if (this.elements.attendance.examSelector) {
+                this.elements.attendance.examSelector.addEventListener('change', () => {
+                    this.updateExamPeriodInfo();
+                    this.renderCalendar();
+                    this.renderDayDetails(today);
+                    this.calculateAttendance();
+                });
+            }
+            this.updateExamPeriodInfo();
             this.renderCalendar();
             this.renderDayDetails(today);
+            this.calculateAttendance();
+        },
+
+        updateExamPeriodInfo: function () {
+            const exam = this.elements.attendance.examSelector ? this.elements.attendance.examSelector.value : 'insem1';
+            const period = examPeriods[exam];
+            if (this.elements.attendance.examPeriodInfo) {
+                this.elements.attendance.examPeriodInfo.innerHTML = `<div class="font-bold">${exam.toUpperCase()} Period:</div><div>${period.start} to ${period.end}</div>`;
+            }
+            // Set date pickers to default period
+            if (this.elements.attendance.startDate) this.elements.attendance.startDate.value = period.start;
+            if (this.elements.attendance.endDate) this.elements.attendance.endDate.value = period.end;
         },
         init: function () {
             if ('serviceWorker' in navigator) {
@@ -625,5 +665,5 @@ document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
         }
     };
-    App.init();
+    App.init(); 
 });
