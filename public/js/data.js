@@ -1232,5 +1232,175 @@ const timetableData = [
             { start: "14:15", end: "15:15" },
             { start: "15:15", end: "16:15" }
         ]
+    },
+    {
+        id: "ty-cs-a",
+        displayName: "TY CS A",
+        batches: ["T1", "T2", "T3"],
+        days: [
+            {
+                day: "Monday",
+                dayIndex: 1,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "PE-I", teacher: "VSB/PSI", room: "505", color: "#ff3d7f" },
+                    { time: "09:15-10:15", type: "lecture", subject: "DBMS", teacher: "AGS", room: "505", color: "#ff9f43" },
+                    { time: "10:30-11:30", type: "lecture", subject: "TOC", teacher: "CNA", room: "509", color: "#ff9f43" },
+                    { time: "11:30-12:30", type: "lecture", subject: "IPR", teacher: "SAB", room: "509", color: "#ff9f43" },
+                    {
+                        time: "13:15-15:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "DBMS Lab", teacher: "AGS", room: "508", color: "#ff3d7f" },
+                            { name: "T2", subject: "", teacher: "", room: "", color: "#3498db" },
+                            { name: "T3", subject: "PE-I Lab", teacher: "VSB/PSI", room: "508", color: "#ff9f43" }
+                        ]
+                    },
+                    { time: "15:15-16:15", subject: "MINOR TH", teacher: "", room: "", color: "#ff3d7f" }
+                ]
+            },
+            {
+                day: "Tuesday",
+                dayIndex: 2,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "PE-I", teacher: "VSB/PSI", room: "505", color: "#ff3d7f" },
+                    { time: "09:15-10:15", type: "lecture", subject: "DBMS", teacher: "AGS", room: "505", color: "#ff9f43" },
+                    { time: "10:30-11:30", type: "lecture", subject: "LIBRARY", teacher: "", room: "", color: "#ff3d7f" },
+                    { time: "11:30-12:30", type: "lecture", subject: "TOC", teacher: "CNA", room: "509", color: "#ff9f43" },
+                    {
+                        time: "13:15-14:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "DBMS Lab", teacher: "AGS", room: "508", color: "#ff3d7f" },
+                            { name: "T2", subject: "PE-I Lab", teacher: "VSB/PSI", room: "508", color: "#3498db" },
+                            { name: "T3", subject: "WT Lab", teacher: "TGM", room: "503", color: "#ff3d7f" }
+                        ]
+                    },
+                    {
+                        time: "14:15-15:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "DBMS Lab", teacher: "AGS", room: "508", color: "#ff3d7f" },
+                            { name: "T2", subject: "PE-I Lab", teacher: "VSB/PSI", room: "508", color: "#3498db" },
+                            { name: "T3", subject: "WT Lab", teacher: "TGM", room: "503", color: "#ff3d7f" }
+                        ]
+                    },
+                    { time: "15:15-16:15", subject: "MINOR TH", teacher: "", room: "", color: "#ff3d7f" }
+                ]
+            },
+            {
+                day: "Wednesday",
+                dayIndex: 3,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "CCRP", teacher: "", room: "", color: "#ff4757" },
+                    { time: "09:15-10:15", type: "lecture", subject: "CCRP", teacher: "", room: "", color: "#ff4757" },
+                    { time: "10:30-11:30", type: "lecture", subject: "DBMS", teacher: "AGS", room: "509", color: "#ff9f43" },
+                    { time: "11:30-12:30", type: "lecture", subject: "WT", teacher: "TGM", room: "509", color: "#ff9f43" },
+                    {
+                        time: "13:15-14:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "WT Lab", teacher: "TGM", room: "503", color: "#3498db" },
+                            { name: "T2", subject: "DBMS Lab", teacher: "AGS", room: "508", color: "#ff3d7f" },
+                            { name: "T3", subject: "PDL-II Lab", teacher: "PSJ", room: "502", color: "#ff9f43" }
+                        ]
+                    },
+                    {
+                        time: "14:15-15:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "WT Lab", teacher: "TGM", room: "503", color: "#3498db" },
+                            { name: "T2", subject: "DBMS Lab", teacher: "AGS", room: "508", color: "#ff3d7f" },
+                            { name: "T3", subject: "PDL-II Lab", teacher: "PSJ", room: "502", color: "#ff9f43" }
+                        ]
+                    },
+                    { time: "15:15-16:15", subject: "MOOC-AMAD", teacher: "", room: "512", color: "#ff3d7f" }
+                ]
+            },
+            {
+                day: "Thursday",
+                dayIndex: 4,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "PE-I", teacher: "VSB/PSI", room: "505", color: "#ff3d7f" },
+                    { time: "09:15-10:15", type: "lecture", subject: "TOC", teacher: "CNA", room: "505", color: "#ff9f43" },
+                    { time: "10:30-11:30", type: "lecture", subject: "WT", teacher: "TGM", room: "509", color: "#3498db" },
+                    { time: "11:30-12:30", type: "lecture", subject: "IPR", teacher: "SAB", room: "509", color: "#ffc600" },
+                    {
+                        time: "13:15-14:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "PDL-II Lab", teacher: "PSJ", room: "502", color: "#ffc600" },
+                            { name: "T2", subject: "PDL-II Lab", teacher: "SBT", room: "507", color: "#ffc600" },
+                            { name: "T3", subject: "DBMS Lab", teacher: "AGS", room: "508", color: "#ffc600" }
+                        ]
+                    },
+                    {
+                        time: "14:15-15:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "PDL-II Lab", teacher: "PSJ", room: "502", color: "#ffc600" },
+                            { name: "T2", subject: "PDL-II Lab", teacher: "SBT", room: "507", color: "#ffc600" },
+                            { name: "T3", subject: "DBMS Lab", teacher: "AGS", room: "508", color: "#ffc600" }
+                        ]
+                    },
+                    { time: "15:15-16:15", subject: "MINOR TH", teacher: "", room: "", color: "#ff3d7f" }
+                ]
+            },
+            {
+                day: "Friday",
+                dayIndex: 5,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "WT", teacher: "TGM", room: "505", color: "#ff3d7f" },
+                    { time: "09:15-10:15", type: "lecture", subject: "AC-V", teacher: "", room: "505", color: "#3498db" },
+                    {
+                        time: "10:30-11:30",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "PE-I Lab", teacher: "VSB/PSI", room: "508", color: "#ff3d7f" },
+                            { name: "T2", subject: "WT Lab", teacher: "TGM", room: "503", color: "#ff3d7f" },
+                            { name: "T3", subject: "DBMS", teacher: "AGS", room: "508", color: "#ff3d7f" }
+                        ]
+                    },
+                    {
+                        time: "11:30-12:30",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "PE-I Lab", teacher: "VSB/PSI", room: "508", color: "#ff3d7f" },
+                            { name: "T2", subject: "WT Lab", teacher: "TGM", room: "503", color: "#ff3d7f" },
+                            { name: "T3", subject: "DBMS", teacher: "AGS", room: "508", color: "#ff3d7f" }
+                        ]
+                    },
+                    {
+                        time: "13:15-14:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "", teacher: "", room: "", color: "#ff3d7f" },
+                            { name: "T2", subject: "DBMS Lab", teacher: "AGS", room: "508", color: "#ff3d7f" },
+                            { name: "T3", subject: "", teacher: "", room: "", color: "#ff3d7f" }
+                        ]
+                    },
+                    {
+                        time: "14:15-15:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "", teacher: "", room: "", color: "#ff3d7f" },
+                            { name: "T2", subject: "DBMS Lab", teacher: "AGS", room: "508", color: "#ff3d7f" },
+                            { name: "T3", subject: "", teacher: "", room: "", color: "#ff3d7f" }
+                        ]
+                    },
+                    { time: "15:15-16:15", subject: "BATCH COUNSELLING", teacher: "", room: "", color: "#ff3d7f" }
+                ]
+            }
+        ],
+        timeSlots: [
+            { start: "08:15", end: "09:15" },
+            { start: "09:15", end: "10:15" },
+            { start: "10:15", end: "10:30", label: "Tea Break" },
+            { start: "10:30", end: "11:30" },
+            { start: "11:30", end: "12:30" },
+            { start: "12:30", end: "13:15", label: "Lunch Break" },
+            { start: "13:15", end: "14:15" },
+            { start: "14:15", end: "15:15" },
+            { start: "15:15", end: "16:15" }
+        ]
     }
 ];
