@@ -3,6 +3,11 @@ const timetableData = [
         id: "ty-it",
         displayName: "TY IT",
         batches: ["T1", "T2", "T3"],
+        examPeriods: {
+            insem1: { start: '2025-07-14', end: '2025-07-25' },
+            insem2: { start: '2025-08-04', end: '2025-08-14' },
+            endsem: { start: '2025-08-25', end: '2025-10-31' },
+        },
         days: [
             {
                 day: "Monday",
@@ -119,6 +124,11 @@ const timetableData = [
         id: "ty-elec",
         displayName: "TY Elec",
         batches: ["T1", "T2", "T3"],
+        examPeriods: {
+            insem1: { start: '2025-07-14', end: '2025-07-25' },
+            insem2: { start: '2025-08-04', end: '2025-08-14' },
+            endsem: { start: '2025-08-25', end: '2025-10-31' },
+        },
         days: [
             {
                 day: "Monday",
@@ -225,6 +235,11 @@ const timetableData = [
         id: "ty-instru",
         displayName: "TY Instru",
         batches: ["T1", "T2", "T3"],
+        examPeriods: {
+            insem1: { start: '2025-07-14', end: '2025-07-25' },
+            insem2: { start: '2025-08-04', end: '2025-08-14' },
+            endsem: { start: '2025-08-25', end: '2025-10-31' },
+        },
         days: [
             {
                 day: "Monday",
@@ -326,6 +341,11 @@ const timetableData = [
         id: "sy-ai-a",
         displayName: "SY AI A",
         batches: ["S1", "S2", "S3"],
+        examPeriods: {
+            insem1: { start: '2025-07-14', end: '2025-09-12' },
+            insem2: { start: '2025-09-22', end: '2025-10-03' },
+            endsem: { start: '2025-10-13', end: '2025-10-31' },
+        },
         days: [
             {
                 day: "Monday",
@@ -429,6 +449,11 @@ const timetableData = [
         id: "sy-ai-b",
         displayName: "SY AI B",
         batches: ["S1", "S2", "S3"],
+        examPeriods: {
+            insem1: { start: '2025-07-14', end: '2025-09-12' },
+            insem2: { start: '2025-09-22', end: '2025-10-03' },
+            endsem: { start: '2025-10-13', end: '2025-10-31' },
+        },
         days: [
             {
                 day: "Monday",
@@ -538,6 +563,11 @@ const timetableData = [
         id: "ty-ai-a",
         displayName: "TY AI A",
         batches: ["T1", "T2", "T3"],
+        examPeriods: {
+            insem1: { start: '2025-07-14', end: '2025-07-25' },
+            insem2: { start: '2025-08-04', end: '2025-08-14' },
+            endsem: { start: '2025-08-25', end: '2025-10-31' },
+        },
         days: [
             {
                 day: "Monday",
@@ -659,6 +689,11 @@ const timetableData = [
         id: "ty-ai-b",
         displayName: "TY AI B",
         batches: ["T1", "T2", "T3"],
+        examPeriods: {
+            insem1: { start: '2025-07-14', end: '2025-07-25' },
+            insem2: { start: '2025-08-04', end: '2025-08-14' },
+            endsem: { start: '2025-08-25', end: '2025-10-31' },
+        },
         days: [
             {
                 day: "Monday",
