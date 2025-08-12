@@ -4,36 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
     <title>Timetable</title>
     <meta name="description"
-        content="A clean, responsive, offline-first timetable and attendance tracker with a neo-brutalist design.">
-    <meta name="theme-color" content="#f5f5f5">
-    <meta name="keywords" content="timetable, schedule, attendance tracker, neo-brutalist, offline app">
+        content="A clean, responsive, offline-first timetable and attendance tracker with a bold neo-brutalist design. Works perfectly on mobile, desktop, and as a PWA even without internet.">
+    <meta name="keywords"
+        content="timetable, schedule, attendance tracker, offline timetable app, class schedule, study planner, neo-brutalist design, progressive web app, PWA">
     <meta name="author" content="Swaroop">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://your-domain.com/">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://ioit-tt.netlify.app/">
+
+    <!-- Theme & PWA -->
+    <meta name="theme-color" content="#171717">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512x512.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta property="og:title" content="Timetable">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Timetable, Offline Class Schedule & Attendance Tracker">
     <meta property="og:description"
-        content="A responsive, offline-first timetable and attendance tracker with a neo-brutalist design.">
+        content="Track your classes and attendance in a fast, offline-first web app with a bold neo-brutalist UI.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://your-domain.com/">
-    <meta property="og:image" content="https://your-domain.com/preview-image.png">
+    <meta property="og:url" content="https://ioit-tt.netlify.app/">
+    <meta property="og:image" content="https://ioit-tt.netlify.app/assets/screenshot_week.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Screenshot of the Timetable web app showing a week's schedule">
+    <meta property="og:site_name" content="Timetable">
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Timetable">
-    <meta name="twitter:description" content="A responsive, offline-first timetable and attendance tracker.">
-    <meta name="twitter:image" content="https://your-domain.com/preview-image.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="twitter:title" content="Timetable, Offline Class Schedule & Attendance Tracker">
+    <meta name="twitter:description"
+        content="Track your classes and attendance in a fast, offline-first web app with a bold neo-brutalist UI.">
+    <meta name="twitter:image" content="https://ioit-tt.netlify.app/assets/screenshot_week.png">
+    <meta name="twitter:image:alt" content="Screenshot of the Timetable app">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Timetable",
+    "url": "https://ioit-tt.netlify.app/",
+    "description": "A clean, responsive, offline-first timetable and attendance tracker with a bold neo-brutalist design.",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "All",
+    "author": {
+      "@type": "Person",
+      "name": "Swaroop",
+      "url": "https://github.com/swarooppatilx"
+    },
+    "image": "https://ioit-tt.netlify.app/assets/screenshot_week.png"
+  }
+  </script>
+
+    <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <!-- Icons & Scripts -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 
 <body class="p-2 sm:p-4 md:p-6">
 

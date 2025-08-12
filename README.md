@@ -2,6 +2,14 @@
 
 Just a simple, no-fuss timetable I built because I wanted something fast, offline-first, and with a design that has some personality. It tracks my class schedule and attendance without needing a server or any complicated setup.
 
+## Screenshots
+
+<div align="center">
+    <img src="assets/screenshot_today.png" alt="Today View" width="33%">
+    <img src="assets/screenshot_week.png" alt="Week View" width="33%">
+    <img src="assets/screenshot_calendar.png" alt="Calendar View" width="33%">
+</div>
+
 ---
 
 ### What is this?
