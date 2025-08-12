@@ -220,5 +220,106 @@ const timetableData = [
             { start: "15:15", end: "16:15" },
             { start: "16:15", end: "17:15" }
         ],
+    },
+    {
+        id: "ty-instru",
+        displayName: "TY Instru",
+        batches: ["T1", "T2", "T3"],
+        days: [
+            {
+                day: "Monday",
+                dayIndex: 1,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "MCT", teacher: "BNM", room: "708", color: "#ff3d7f" },
+                    { time: "09:15-10:15", type: "lecture", subject: "IA", teacher: "SRK", room: "708", color: "#ff9f43" },
+                    { time: "10:30-11:30", type: "lecture", subject: "BMI", teacher: "SRG", room: "", color: "#2ed573" },
+                    { time: "11:30-12:30", type: "lecture", subject: "Library", teacher: "", room: "708", color: "#a4b0be" },
+                    {
+                        time: "13:15-15:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "MCT Lab", teacher: "BNM", room: "703", color: "#ff3d7f" },
+                            { name: "T2", subject: "IA Lab", teacher: "SRK", room: "705", color: "#ff9f43" },
+                            { name: "T3", subject: "BMI Lab", teacher: "SRG", room: "706", color: "#2ed573" }
+                        ]
+                    },
+                    { time: "15:15-16:15", type: "lecture", subject: "Minor IA", teacher: "PUP", room: "708", color: "#706fd3" }
+                ]
+            },
+            {
+                day: "Tuesday",
+                dayIndex: 2,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "IA", teacher: "SRK", room: "708", color: "#ff9f43" },
+                    { time: "09:15-10:15", type: "lecture", subject: "DSP", teacher: "SSJ", room: "708", color: "#ffc600" },
+                    { time: "10:30-11:30", type: "lecture", subject: "BMI", teacher: "SRG", room: "704", color: "#2ed573" },
+                    { time: "11:30-12:30", type: "lecture", subject: "MCT", teacher: "BNM", room: "704", color: "#ff3d7f" },
+                    {
+                        time: "13:15-15:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "IA Lab", teacher: "SRK", room: "705", color: "#ff9f43" },
+                            { name: "T2", subject: "BMI Lab", teacher: "SRG", room: "706", color: "#2ed573" },
+                            { name: "T3", subject: "MCT Lab", teacher: "BNM", room: "703", color: "#ff3d7f" }
+                        ]
+                    },
+                    { time: "15:15-16:15", type: "lecture", subject: "Minor IA", teacher: "PUP", room: "708", color: "#706fd3" }
+                ]
+            },
+            {
+                day: "Wednesday",
+                dayIndex: 3,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "Audit Course", teacher: "", room: "708", color: "#575fcf" },
+                    { time: "09:15-10:15", type: "lecture", subject: "DSP", teacher: "SSJ", room: "708", color: "#ffc600" },
+                    { time: "10:30-12:30", type: "lecture", subject: "CCRP", teacher: "SRK", room: "708", color: "#ff4757" },
+                    { time: "13:15-14:15", type: "lecture", subject: "IPR", teacher: "PUP", room: "708", color: "#1e90ff" },
+                    { time: "14:15-15:15", type: "lecture", subject: "IA", teacher: "SRK", room: "708", color: "#ff9f43" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MOOC", teacher: "SRG", room: "704", color: "#00d2d3" }
+                ]
+            },
+            {
+                day: "Thursday",
+                dayIndex: 4,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "BMI", teacher: "SRG", room: "708", color: "#2ed573" },
+                    { time: "09:15-10:15", type: "lecture", subject: "DSP", teacher: "SSJ", room: "708", color: "#ffc600" },
+                    { time: "10:30-11:30", type: "lecture", subject: "IA Tut", teacher: "SRK", room: "704", color: "#ff9f43" },
+                    { time: "11:30-12:30", type: "lecture", subject: "DSP Tut", teacher: "SSJ", room: "704", color: "#ffc600" },
+                    {
+                        time: "13:15-15:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "BMI Lab", teacher: "SRG", room: "706", color: "#2ed573" },
+                            { name: "T2", subject: "MCT Lab", teacher: "BNM", room: "703", color: "#ff3d7f" },
+                            { name: "T3", subject: "IA Lab", teacher: "SRK", room: "705", color: "#ff9f43" }
+                        ]
+                    },
+                    { time: "15:15-16:15", type: "lecture", subject: "Minor IA", teacher: "PUP", room: "708", color: "#706fd3" }
+                ]
+            },
+            {
+                day: "Friday",
+                dayIndex: 5,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "IPR", teacher: "PUP", room: "708", color: "#1e90ff" },
+                    { time: "09:15-10:15", type: "lecture", subject: "MCT", teacher: "BNM", room: "708", color: "#ff3d7f" },
+                    { time: "10:30-11:30", type: "lecture", subject: "Remedial Class", teacher: "", room: "708", color: "#f78fb3" },
+                    { time: "15:15-16:15", type: "lecture", subject: "Audit Course", teacher: "", room: "", color: "#5352ed" }
+                ]
+            },
+        ],
+        timeSlots: [
+            { start: "08:15", end: "09:15" },
+            { start: "09:15", end: "10:15" },
+            { start: "10:15", end: "10:30", label: "Tea Break" },
+            { start: "10:30", end: "11:30" },
+            { start: "11:30", end: "12:30" },
+            { start: "12:30", end: "13:15", label: "Lunch Break" },
+            { start: "13:15", end: "14:15" },
+            { start: "14:15", end: "15:15" },
+            { start: "15:15", end: "16:15" },
+            { start: "16:15", end: "17:15" }
+        ]
     }
 ];
