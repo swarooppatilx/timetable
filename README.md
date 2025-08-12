@@ -1,49 +1,54 @@
 # Timetable
 
-A simple, no-fuss timetable I built because I wanted something fast, offline-first, and with a design that actually has some personality. It tracks class schedules and attendance without needing a server or complicated setup.
+Fast, offline-first timetable and attendance tracker with a clean, punchy UI. No server. No build. Just open and use.
+
+## Features
+- Today and week views
+- Attendance with calendar
+- Everything saved locally (localStorage)
+- Installable PWA, works fully offline
+- Handy shortcuts: mark day Present (P) / Absent (A)
+
+---
+
+## Tech stack
+- Vanilla JS (ES6+)
+- Tailwind CSS (CDN)
+- Lucide Icons
+
+No frameworks. No build steps.
+
+---
 
 ## Screenshots
 
-<div align="center">
-    <img src="assets/screenshot_today.png" alt="Today View" width="33%">
-    <img src="assets/screenshot_week.png" alt="Week View" width="33%">
-    <img src="assets/screenshot_calendar.png" alt="Calendar View" width="33%">
-</div>
+<details>
+  <summary>Tap to view screenshots</summary>
+
+  <p align="center">
+    <img src="public/assets/screenshot_today.png" alt="Today view" width="100%" loading="lazy" style="max-width:640px;display:block;margin:0 auto;" />
+  </p>
+  <p align="center">
+    <img src="public/assets/screenshot_week.png" alt="Week view" width="100%" loading="lazy" style="max-width:640px;display:block;margin:0 auto;" />
+  </p>
+  <p align="center">
+    <img src="public/assets/screenshot_calendar.png" alt="Calendar view" width="100%" loading="lazy" style="max-width:640px;display:block;margin:0 auto;" />
+  </p>
+
+</details>
 
 ---
 
-## What is this?
+## Timetable data format
 
-A complete, single-page application built with just three files. The goal was to create something I could drop onto any static host and have it work instantly.
-
-**Features:**
-- Clean views for the full week or just today  
-- Attendance tracker with a full calendar  
-- Saves everything in your browser’s `localStorage` — no data ever leaves your machine  
-- PWA support — can be installed to your home screen and used completely offline  
-- Quick keyboard shortcuts to mark an entire day present (`P`) or absent (`A`)
-
----
-
-## Tech Stack
-
-- Vanilla JS (ES6+)  
-- Tailwind CSS (via CDN)  
-- Lucide Icons  
-
-No frameworks. No build steps. No extra tooling.
-
----
-
-## Timetable Data Format
-
-The timetable data is stored in a JavaScript array called `timetableData`.
+Timetable data lives in `data.js` as `timetableData`.
 
 You can:
-- Add more days for an existing timetable  
-- Add entirely new timetables for different classes or batches  
+- Add more days to an existing timetable
+- Add new timetables for other classes/batches
 
-Example:
+<details>
+  <summary>Example (tap to expand)</summary>
 
 ```js
 const timetableData = [
@@ -66,7 +71,7 @@ const timetableData = [
             color: "#ef4444"
           },
           {
-            time: "10:30-12:30",
+            time: "10:30-11:30",
             type: "lab",
             color: "#a855f7",
             batches: [
@@ -85,7 +90,8 @@ const timetableData = [
       { start: "08:15", end: "09:15" },
       { start: "09:15", end: "10:15" },
       { start: "10:15", end: "10:30", label: "Tea Break" },
-      { start: "10:30", end: "12:30" },
+      { start: "10:30", end: "11:30" },
+      { start: "11:30", end: "12:30" },
       { start: "12:30", end: "13:15", label: "Lunch Break" },
       { start: "13:15", end: "14:15" },
       { start: "14:15", end: "15:15" },
@@ -95,44 +101,44 @@ const timetableData = [
 
   // Add another timetable here for a different class or section...
 ];
-````
+```
+
+</details>
 
 ---
 
 ## Contributing
 
-If you want to improve this project, here’s how:
+<details>
+  <summary>How to contribute (tap to expand)</summary>
 
-### 1. Fork and clone
+1) Fork and clone
 
-```sh
+```bash
 git clone https://github.com/swarooppatilx/timetable.git
 cd timetable
 ```
 
-### 2. Make your changes
+2) Make changes
+- Edit `timetableData` in `data.js`
+- Update styles in `style.css` or Tailwind classes in `index.html`
+- Add features/fixes in `app.js`
 
-* Edit `timetableData` in `data.js` to add or update schedules
-* Modify `style.css` or Tailwind classes in `index.html` for styling
-* Add features or fix bugs in `app.js`
+3) Test locally
+- Open `index.html` directly, or run a local server:
 
-### 3. Test locally
-
-Open `index.html` directly in a browser.
-If you want to test PWA features like offline mode, run a local server:
-
-```sh
-python -m http.server
+```bash
+python -m http.server -d public/
 ```
 
-### 4. Commit and push
+4) Commit and push
 
-```sh
+```bash
 git add .
 git commit -m "feat: add new timetable for SY IT"
 git push origin main
 ```
 
-### 5. Create a pull request
+5) Open a Pull Request on GitHub
 
-Go to your fork on GitHub and submit a PR.
+</details>
