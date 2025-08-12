@@ -321,5 +321,452 @@ const timetableData = [
             { start: "15:15", end: "16:15" },
             { start: "16:15", end: "17:15" }
         ]
-    }
+    },
+    {
+        id: "sy-ai-a",
+        displayName: "SY AI A",
+        batches: ["S1", "S2", "S3"],
+        days: [
+            {
+                day: "Monday",
+                dayIndex: 1,
+                slots: [
+                    { time: "09:15-10:15", type: "lecture", subject: "OOP", teacher: "PDB", room: "405", color: "#ff3d7f" },
+                    { time: "10:30-12:30", type: "lecture", subject: "CCRP", teacher: "", room: "405", color: "#1e90ff" },
+                    { time: "13:15-14:15", type: "lecture", subject: "FDS", teacher: "RAJ", room: "405", color: "#ff9f43" },
+                    { time: "14:15-15:15", type: "lecture", subject: "AUDIT", teacher: "AAV", room: "405", color: "#00d2d3" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#ff4757" }
+                ]
+            },
+            {
+                day: "Tuesday",
+                dayIndex: 2,
+                slots: [
+                    { time: "09:15-10:15", type: "lecture", subject: "FDS", teacher: "RAJ", room: "405", color: "#ff9f43" },
+                    {
+                        time: "10:30-12:30",
+                        type: "lab",
+                        batches: [
+                            { name: "S1", subject: "OOPL", teacher: "PDB", room: "406", color: "#ff3d7f" },
+                            { name: "S2", subject: "DSL", teacher: "NAI", room: "402", color: "#3498db" },
+                            { name: "S3", subject: "OSL", teacher: "AAV", room: "403", color: "#9b59b6" }
+                        ]
+                    },
+                    { time: "13:15-14:15", type: "lecture", subject: "BOSCN", teacher: "AAV", room: "405", color: "#ffc600" },
+                    { time: "14:15-15:15", type: "lecture", subject: "DMS", teacher: "NAS", room: "405", color: "#2ed573" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#ff4757" }
+                ]
+            },
+            {
+                day: "Wednesday",
+                dayIndex: 3,
+                slots: [
+                    { time: "09:15-10:15", type: "lecture", subject: "LIBRARY", teacher: "", room: "", color: "#a4b0be" },
+                    {
+                        time: "10:30-12:30",
+                        type: "lab",
+                        batches: [
+                            { name: "S1", subject: "OSL", teacher: "AAV", room: "407", color: "#9b59b6" },
+                            { name: "S2", subject: "OOPL", teacher: "PDB", room: "406", color: "#ff3d7f" },
+                            { name: "S3", subject: "DSL", teacher: "SB", room: "402", color: "#3498db" }
+                        ]
+                    },
+                    { time: "13:15-14:15", type: "lecture", subject: "OOP", teacher: "PDB", room: "405", color: "#ff3d7f" },
+                    { time: "14:15-15:15", type: "lecture", subject: "DEG", teacher: "AAV", room: "405", color: "#575fcf" }
+                ]
+            },
+            {
+                day: "Thursday",
+                dayIndex: 4,
+                slots: [
+                    { time: "09:15-10:15", type: "lecture", subject: "BOSCN", teacher: "AAV", room: "405", color: "#ffc600" },
+                    {
+                        time: "10:30-12:30",
+                        type: "lab",
+                        batches: [
+                            { name: "S1", subject: "DSL", teacher: "NAI", room: "402", color: "#3498db" },
+                            { name: "S2", subject: "OSL", teacher: "AAV", room: "407", color: "#9b59b6" },
+                            { name: "S3", subject: "OOPL", teacher: "PDB", room: "406", color: "#ff3d7f" }
+                        ]
+                    },
+                    { time: "13:15-14:15", type: "lecture", subject: "DMS", teacher: "NAS", room: "405", color: "#2ed573" },
+                    { time: "14:15-15:15", type: "lecture", subject: "OE", teacher: "SDK", room: "405", color: "#5352ed" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#ff4757" }
+                ]
+            },
+            {
+                day: "Friday",
+                dayIndex: 5,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "OOP", teacher: "PDB", room: "405", color: "#ff3d7f" },
+                    { time: "09:15-10:15", type: "lecture", subject: "FDS", teacher: "RAJ", room: "405", color: "#ff9f43" },
+                    {
+                        time: "10:30-12:30",
+                        type: "lab",
+                        batches: [
+                            { name: "S1", subject: "DSL", teacher: "NAI", room: "402", color: "#3498db" },
+                            { name: "S2", subject: "DSL", teacher: "RRO", room: "407", color: "#3498db" },
+                            { name: "S3", subject: "DSL", teacher: "SBL", room: "406", color: "#3498db" }
+                        ]
+                    },
+                    { time: "13:15-14:15", type: "lecture", subject: "BOSCN", teacher: "AAV", room: "405", color: "#ffc600" },
+                    { time: "14:15-15:15", type: "lecture", subject: "DMS", teacher: "NAS", room: "405", color: "#2ed573" }
+                ]
+            }
+        ],
+        timeSlots: [
+            { start: "08:15", end: "09:15" },
+            { start: "09:15", end: "10:15" },
+            { start: "10:15", end: "10:30", label: "Tea Break" },
+            { start: "10:30", end: "12:30" },
+            { start: "12:30", end: "13:15", label: "Lunch Break" },
+            { start: "13:15", end: "14:15" },
+            { start: "14:15", end: "15:15" },
+            { start: "15:15", end: "16:15" }
+        ]
+    },
+    {
+        id: "sy-ai-b",
+        displayName: "SY AI B",
+        batches: ["S1", "S2", "S3"],
+        days: [
+            {
+                day: "Monday",
+                dayIndex: 1,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "OOP", teacher: "DSZ", room: "409", color: "#ff3d7f" },
+                    { time: "09:15-10:15", type: "lecture", subject: "BOSCN", teacher: "RSM", room: "409", color: "#ffc600" },
+                    { time: "10:30-12:30", type: "lecture", subject: "CCRP", teacher: "", room: "409", color: "#1e90ff" },
+                    { time: "13:15-14:15", type: "lecture", subject: "FDS", teacher: "PBW", room: "409", color: "#ff9f43" },
+                    { time: "14:15-15:15", type: "lecture", subject: "DMS", teacher: "NAS", room: "409", color: "#2ed573" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#ff4757" }
+                ]
+            },
+            {
+                day: "Tuesday",
+                dayIndex: 2,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "BOSCN", teacher: "RSM", room: "409", color: "#ffc600" },
+                    { time: "09:15-10:15", type: "lecture", subject: "OOP", teacher: "DSZ", room: "409", color: "#ff3d7f" },
+                    {
+                        time: "10:30-12:30",
+                        type: "lab",
+                        batches: [
+                            { name: "S1", subject: "OOPL", teacher: "DSZ", room: "412", color: "#ff3d7f" },
+                            { name: "S2", subject: "DSL", teacher: "SB", room: "407", color: "#3498db" },
+                            { name: "S3", subject: "OSL", teacher: "RSM", room: "408", color: "#9b59b6" }
+                        ]
+                    },
+                    { time: "13:15-14:15", type: "lecture", subject: "OE", teacher: "SDK", room: "409", color: "#5352ed" },
+                    { time: "14:15-15:15", type: "lecture", subject: "FDS", teacher: "PBW", room: "409", color: "#ff9f43" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#ff4757" }
+                ]
+            },
+            {
+                day: "Wednesday",
+                dayIndex: 3,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "OOP", teacher: "DSZ", room: "409", color: "#ff3d7f" },
+                    { time: "09:15-10:15", type: "lecture", subject: "BOSCN", teacher: "RSM", room: "409", color: "#ffc600" },
+                    {
+                        time: "10:30-12:30",
+                        type: "lab",
+                        batches: [
+                            { name: "S1", subject: "OSL", teacher: "RSM", room: "408", color: "#9b59b6" },
+                            { name: "S2", subject: "OOPL", teacher: "DSZ", room: "412", color: "#ff3d7f" },
+                            { name: "S3", subject: "DSL", teacher: "PBW", room: "403", color: "#3498db" }
+                        ]
+                    },
+                    { time: "13:15-14:15", type: "lecture", subject: "DMS", teacher: "NAS", room: "409", color: "#2ed573" },
+                    { time: "14:15-15:15", type: "lecture", subject: "DEG", teacher: "RSM", room: "409", color: "#575fcf" }
+                ]
+            },
+            {
+                day: "Thursday",
+                dayIndex: 4,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "DMS", teacher: "NAS", room: "409", color: "#2ed573" },
+                    { time: "09:15-10:15", type: "lecture", subject: "LIBRARY", teacher: "", room: "", color: "#a4b0be" },
+                    {
+                        time: "10:30-12:30",
+                        type: "lab",
+                        batches: [
+                            { name: "S1", subject: "DSL", teacher: "PBW", room: "403", color: "#3498db" },
+                            { name: "S2", subject: "DSL", teacher: "SB", room: "408", color: "#3498db" },
+                            { name: "S3", subject: "OOPL", teacher: "DSZ", room: "412", color: "#ff3d7f" }
+                        ]
+                    },
+                    { time: "13:15-14:15", type: "lecture", subject: "FDS", teacher: "PBW", room: "409", color: "#ff9f43" },
+                    { time: "14:15-15:15", type: "lecture", subject: "AUDIT", teacher: "RSM", room: "409", color: "#00d2d3" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#ff4757" }
+                ]
+            },
+            {
+                day: "Friday",
+                dayIndex: 5,
+                slots: [
+                    {
+                        time: "10:30-12:30",
+                        type: "lab",
+                        batches: [
+                            { name: "S1", subject: "DSL", teacher: "PBW", room: "403", color: "#3498db" },
+                            { name: "S2", subject: "OSL", teacher: "RSM", room: "408", color: "#9b59b6" }
+                        ]
+                    },
+                    {
+                        time: "13:15-15:15",
+                        type: "lab",
+                        batches: [
+                            { name: "S3", subject: "DSL", teacher: "PBW", room: "403", color: "#3498db" }
+                        ]
+                    }
+                ]
+            }
+        ],
+        timeSlots: [
+            { start: "08:15", end: "09:15" },
+            { start: "09:15", end: "10:15" },
+            { start: "10:15", end: "10:30", label: "Tea Break" },
+            { start: "10:30", end: "12:30" },
+            { start: "12:30", end: "13:15", label: "Lunch Break" },
+            { start: "13:15", end: "14:15" },
+            { start: "14:15", end: "15:15" },
+            { start: "15:15", end: "16:15" }
+        ]
+    },
+    {
+        id: "ty-ai-a",
+        displayName: "TY AI A",
+        batches: ["T1", "T2", "T3"],
+        days: [
+            {
+                day: "Monday",
+                dayIndex: 1,
+                slots: [
+                    {
+                        time: "08:15-10:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "MLL", teacher: "MBT", room: "403", color: "#ff3d7f" },
+                            { name: "T2", subject: "BATL", teacher: "RRO", room: "406", color: "#ff9f43" },
+                            { name: "T3", subject: "NLPL", teacher: "SDK", room: "402", color: "#2ed573" }
+                        ]
+                    },
+                    {
+                        time: "10:30-12:30",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "BATL", teacher: "RRO", room: "406", color: "#ff9f43" },
+                            { name: "T2", subject: "MLL", teacher: "BDL", room: "403", color: "#ff3d7f" }
+                        ]
+                    },
+                    { time: "13:15-14:15", type: "lecture", subject: "ML", teacher: "BDL", room: "RF", color: "#ff3d7f" },
+                    { time: "14:15-15:15", type: "lecture", subject: "TOC", teacher: "MBT", room: "RF", color: "#ffc600" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#ff4757" }
+                ]
+            },
+            {
+                day: "Tuesday",
+                dayIndex: 2,
+                slots: [
+                    {
+                        time: "08:15-10:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "NLPL", teacher: "SDK", room: "402", color: "#2ed573" },
+                            { name: "T2", subject: "MLL", teacher: "MBT", room: "403", color: "#ff3d7f" },
+                            { name: "T3", subject: "BATL", teacher: "RRO", room: "406", color: "#ff9f43" }
+                        ]
+                    },
+                    { time: "10:30-11:30", type: "lecture", subject: "ML", teacher: "BDL", room: "409", color: "#ff3d7f" },
+                    { time: "11:30-12:30", type: "lecture", subject: "NLP", teacher: "SDK", room: "409", color: "#2ed573" },
+                    { time: "13:15-14:15", type: "lecture", subject: "BAT", teacher: "RRO", room: "RF", color: "#ff9f43" },
+                    { time: "14:15-15:15", type: "lecture", subject: "TOC", teacher: "MBT", room: "RF", color: "#ffc600" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#ff4757" }
+                ]
+            },
+            {
+                day: "Wednesday",
+                dayIndex: 3,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "TOC", teacher: "MBT", room: "206", color: "#ffc600" },
+                    { time: "09:15-10:15", type: "lecture", subject: "AUDIT-GER", teacher: "SSS", room: "206", color: "#575fcf" },
+                    { time: "10:30-12:30", type: "lecture", subject: "CCRP", teacher: "", room: "409", color: "#1e90ff" },
+                    {
+                        time: "13:15-15:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "MLL", teacher: "MBT", room: "402", color: "#ff3d7f" },
+                            { name: "T2", subject: "BATL", teacher: "RRO", room: "406", color: "#ff9f43" },
+                            { name: "T3", subject: "MLL", teacher: "BDL", room: "403", color: "#ff3d7f" }
+                        ]
+                    },
+                    { time: "15:15-16:15", type: "lecture", subject: "NLP", teacher: "SDK", room: "RF", color: "#2ed573" }
+                ]
+            },
+            {
+                day: "Thursday",
+                dayIndex: 4,
+                slots: [
+                    {
+                        time: "08:15-10:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "BATL", teacher: "RRO", room: "406", color: "#ff9f43" },
+                            { name: "T2", subject: "MLL", teacher: "MBT", room: "403", color: "#ff3d7f" }
+                        ]
+                    },
+                    { time: "10:30-11:30", type: "lecture", subject: "ML", teacher: "BDL", room: "409", color: "#ff3d7f" },
+                    { time: "11:30-12:30", type: "lecture", subject: "LIBRARY", teacher: "", room: "", color: "#a4b0be" },
+                    { time: "13:15-14:15", type: "lecture", subject: "IPR", teacher: "AAV", room: "206", color: "#5352ed" },
+                    { time: "14:15-15:15", type: "lecture", subject: "BAT", teacher: "RRO", room: "206", color: "#ff9f43" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#ff4757" }
+                ]
+            },
+            {
+                day: "Friday",
+                dayIndex: 5,
+                slots: [
+                    {
+                        time: "08:15-10:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T2", subject: "NLPL", teacher: "SDK", room: "402", color: "#2ed573" },
+                            { name: "T3", subject: "BATL", teacher: "RRO", room: "406", color: "#ff9f43" }
+                        ]
+                    },
+                    { time: "10:30-11:30", type: "lecture", subject: "IPR", teacher: "AAV", room: "409", color: "#5352ed" },
+                    { time: "11:30-12:30", type: "lecture", subject: "NLP", teacher: "SDK", room: "409", color: "#2ed573" },
+                    { time: "13:15-14:15", type: "lecture", subject: "OE", teacher: "NAI", room: "206", color: "#5352ed" },
+                    { time: "14:15-15:15", type: "lecture", subject: "BAT", teacher: "RRO", room: "206", color: "#ff9f43" },
+                    { time: "15:15-16:15", type: "lecture", subject: "AUDIT-JAP", teacher: "SSS", room: "206", color: "#575fcf" }
+                ]
+            }
+        ],
+        timeSlots: [
+            { start: "08:15", end: "09:15" },
+            { start: "09:15", end: "10:15" },
+            { start: "10:15", end: "10:30", label: "Tea Break" },
+            { start: "10:30", end: "11:30" },
+            { start: "11:30", end: "12:30" },
+            { start: "12:30", end: "13:15", label: "Lunch Break" },
+            { start: "13:15", end: "14:15" },
+            { start: "14:15", end: "15:15" },
+            { start: "15:15", end: "16:15" }
+        ]
+    },
+    {
+        id: "ty-ai-b",
+        displayName: "TY AI B",
+        batches: ["T1", "T2", "T3"],
+        days: [
+            {
+                day: "Monday",
+                dayIndex: 1,
+                slots: [
+                    {
+                        time: "08:15-10:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "NLPL", teacher: "SSS", room: "408", color: "#2ed573" },
+                            { name: "T2", subject: "MLL", teacher: "NAI", room: "412", color: "#ff3d7f" },
+                            { name: "T3", subject: "BATL", teacher: "PSG", room: "407", color: "#ff9f43" }
+                        ]
+                    },
+                    {
+                        time: "10:30-12:30",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "MLL", teacher: "NAI", room: "412", color: "#ff3d7f" },
+                            { name: "T2", subject: "BATL", teacher: "PSG", room: "402", color: "#ff9f43" },
+                            { name: "T3", subject: "MLL", teacher: "SB", room: "408", color: "#ff3d7f" }
+                        ]
+                    },
+                    { time: "13:15-14:15", type: "lecture", subject: "ML", teacher: "NAI", room: "206", color: "#ff3d7f" },
+                    { time: "14:15-15:15", type: "lecture", subject: "BAT", teacher: "PSG", room: "206", color: "#ff9f43" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#ff4757" }
+                ]
+            },
+            {
+                day: "Tuesday",
+                dayIndex: 2,
+                slots: [
+                    {
+                        time: "08:15-10:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "MLL", teacher: "NAI", room: "412", color: "#ff3d7f" },
+                            { name: "T2", subject: "BATL", teacher: "PSG", room: "407", color: "#ff9f43" },
+                            { name: "T3", subject: "NLPL", teacher: "SSS", room: "408", color: "#2ed573" }
+                        ]
+                    },
+                    { time: "10:30-11:30", type: "lecture", subject: "NLP", teacher: "SSS", room: "405", color: "#2ed573" },
+                    { time: "11:30-12:30", type: "lecture", subject: "TOC", teacher: "PSG", room: "405", color: "#ffc600" },
+                    { time: "13:15-14:15", type: "lecture", subject: "ML", teacher: "NAI", room: "206", color: "#ff3d7f" },
+                    { time: "14:15-15:15", type: "lecture", subject: "BAT", teacher: "PSG", room: "206", color: "#ff9f43" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#ff4757" }
+                ]
+            },
+            {
+                day: "Wednesday",
+                dayIndex: 3,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "CCRP", teacher: "", room: "405", color: "#1e90ff" },
+                    { time: "10:30-11:30", type: "lecture", subject: "IPR", teacher: "SDK", room: "405", color: "#5352ed" },
+                    { time: "11:30-12:30", type: "lecture", subject: "ML", teacher: "NAI", room: "405", color: "#ff3d7f" },
+                    { time: "13:15-14:15", type: "lecture", subject: "NLP", teacher: "SSS", room: "206", color: "#2ed573" },
+                    { time: "14:15-15:15", type: "lecture", subject: "BAT", teacher: "PSG", room: "206", color: "#ff9f43" },
+                    { time: "15:15-16:15", type: "lecture", subject: "OE", teacher: "NAI", room: "206", color: "#5352ed" }
+                ]
+            },
+            {
+                day: "Thursday",
+                dayIndex: 4,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "IPR", teacher: "SDK", room: "206", color: "#5352ed" },
+                    { time: "09:15-10:15", type: "lecture", subject: "AUDIT-GER", teacher: "SK", room: "206", color: "#575fcf" },
+                    { time: "10:30-11:30", type: "lecture", subject: "LIBRARY", teacher: "", room: "", color: "#a4b0be" },
+                    { time: "11:30-12:30", type: "lecture", subject: "TOC", teacher: "PSG", room: "405", color: "#ffc600" },
+                    {
+                        time: "13:15-15:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "BATL", teacher: "PSG", room: "407", color: "#ff9f43" },
+                            { name: "T2", subject: "MLL", teacher: "DSZ", room: "412", color: "#ff3d7f" },
+                            { name: "T3", subject: "BATL", teacher: "SB", room: "408", color: "#ff9f43" }
+                        ]
+                    },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "", color: "#ff4757" }
+                ]
+            },
+            {
+                day: "Friday",
+                dayIndex: 5,
+                slots: [
+                    {
+                        time: "08:15-10:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "BATL", teacher: "SB", room: "407", color: "#ff9f43" },
+                            { name: "T2", subject: "NLPL", teacher: "SSS", room: "408", color: "#2ed573" },
+                            { name: "T3", subject: "MLL", teacher: "DSZ", room: "412", color: "#ff3d7f" }
+                        ]
+                    },
+                    { time: "10:30-11:30", type: "lecture", subject: "TOC", teacher: "PSG", room: "405", color: "#ffc600" },
+                    { time: "11:30-12:30", type: "lecture", subject: "NLP", teacher: "SSS", room: "405", color: "#2ed573" }
+                ]
+            }
+        ],
+        timeSlots: [
+            { start: "08:15", end: "09:15" },
+            { start: "09:15", end: "10:15" },
+            { start: "10:15", end: "10:30", label: "Tea Break" },
+            { start: "10:30", end: "11:30" },
+            { start: "11:30", end: "12:30" },
+            { start: "12:30", end: "13:15", label: "Lunch Break" },
+            { start: "13:15", end: "14:15" },
+            { start: "14:15", end: "15:15" },
+            { start: "15:15", end: "16:15" }
+        ]
+    },
 ];
