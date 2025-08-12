@@ -486,7 +486,8 @@ document.addEventListener('DOMContentLoaded', () => {
         calculateAttendance: function () {
             // Get selected exam
             const exam = this.elements.attendance.examSelector ? this.elements.attendance.examSelector.value : 'insem1';
-            const period = examPeriods[exam];
+            const classDataForAttendance = this.getCurrentClassData();
+            const period = classDataForAttendance.examPeriods && classDataForAttendance.examPeriods[exam];
             // Use period.start and period.end for filtering attendance
             // If custom dates are set, override
             let start = this.elements.attendance.startDate.value || period.start;
@@ -562,12 +563,28 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.elements.attendance.examSelector) {
                 this.elements.attendance.examSelector.addEventListener('change', () => {
                     this.updateExamPeriodInfo();
+                    // Auto-update start and end date fields based on selected exam
+                    const currentClassData = this.getCurrentClassData();
+                    const exam = this.elements.attendance.examSelector.value;
+                    const period = currentClassData.examPeriods && currentClassData.examPeriods[exam];
+                    if (period) {
+                        if (this.elements.attendance.startDate) this.elements.attendance.startDate.value = period.start;
+                        if (this.elements.attendance.endDate) this.elements.attendance.endDate.value = period.end;
+                    }
                     this.renderCalendar();
                     this.renderDayDetails(today);
                     this.calculateAttendance();
                 });
             }
             this.updateExamPeriodInfo();
+            // Set initial start/end date based on selected exam
+            const currentClassData = this.getCurrentClassData();
+            const exam = this.elements.attendance.examSelector ? this.elements.attendance.examSelector.value : 'insem1';
+            const period = currentClassData.examPeriods && currentClassData.examPeriods[exam];
+            if (period) {
+                if (this.elements.attendance.startDate) this.elements.attendance.startDate.value = period.start;
+                if (this.elements.attendance.endDate) this.elements.attendance.endDate.value = period.end;
+            }
             this.renderCalendar();
             this.renderDayDetails(today);
             this.calculateAttendance();
@@ -575,7 +592,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateExamPeriodInfo: function () {
             const exam = this.elements.attendance.examSelector ? this.elements.attendance.examSelector.value : 'insem1';
-            const period = examPeriods[exam];
+            const classDataForPeriod = this.getCurrentClassData();
+            const period = classDataForPeriod.examPeriods && classDataForPeriod.examPeriods[exam];
             if (this.elements.attendance.examPeriodInfo) {
                 this.elements.attendance.examPeriodInfo.innerHTML = `<div class="font-bold">${exam.toUpperCase()} Period:</div><div>${period.start} to ${period.end}</div>`;
             }
@@ -600,6 +618,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.renderBatchSelector();
                 this.saveState();
                 this.rerenderCurrentView();
+                // Update exam period info and start/end dates for new class
+                this.updateExamPeriodInfo();
+                const exam = this.elements.attendance.examSelector ? this.elements.attendance.examSelector.value : 'insem1';
+                const period = newClassData.examPeriods && newClassData.examPeriods[exam];
+                if (period) {
+                    if (this.elements.attendance.startDate) this.elements.attendance.startDate.value = period.start;
+                    if (this.elements.attendance.endDate) this.elements.attendance.endDate.value = period.end;
+                }
             });
             this.elements.batchSelector.addEventListener('change', (e) => {
                 this.selectedBatch = e.target.value;
