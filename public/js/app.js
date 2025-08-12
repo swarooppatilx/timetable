@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 todayContent: document.getElementById('todayViewContent'),
                 fullContent: document.getElementById('fullViewContent'),
                 fullGrid: document.getElementById('fullViewGrid'),
-                mobileDaySelector: document.getElementById('mobileDaySelector')
+                mobileDaySelector: document.getElementById('mobileDaySelector'),
+                currentDate: document.getElementById('current-date')
             },
             attendance: {
                 monthYearHeader: document.getElementById('month-year-header'),
@@ -30,8 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 detailsBody: document.getElementById('day-details-body'),
                 startDate: document.getElementById('start-date'),
                 endDate: document.getElementById('end-date'),
+                prnNumber: document.getElementById('prn-number'),
                 calculateBtn: document.getElementById('calculate-attendance-btn'),
-                results: document.getElementById('attendance-results')
+                exportBtn: document.getElementById('export-pdf-btn'),
+                results: document.getElementById('attendance-results'),
+                prnWarning: document.getElementById('prn-warning')
             },
         },
         timeToMinutes: function (t) {
@@ -214,12 +218,22 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="progress-bar"></div>
     </div>`;
         },
+        formatDate: function(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        },
         renderTodayView: function () {
             const currentClassData = this.getCurrentClassData();
             const today = new Date();
             const dayIndex = today.getDay();
             const daySchedule = currentClassData.days.find(d => d.dayIndex === dayIndex);
-            const { todayContent } = this.elements.timetable;
+            const { todayContent, currentDate } = this.elements.timetable;
+            
+            // Update current date
+            currentDate.textContent = this.formatDate(today);
+            
             todayContent.innerHTML = '';
             if (!daySchedule) {
                 todayContent.innerHTML = `<h2 class="text-2xl sm:text-3xl font-bold mb-6 text-center">WEEKEND!</h2>`;
@@ -591,7 +605,37 @@ document.addEventListener('DOMContentLoaded', () => {
             this.elements.attendance.nextMonthBtn.addEventListener('click', () => { this.calendarDate.setMonth(this.calendarDate.getMonth() + 1); this.renderCalendar(); });
             this.elements.attendance.startDate.addEventListener('change', () => this.renderCalendar());
             this.elements.attendance.endDate.addEventListener('change', () => this.renderCalendar());
-            this.elements.attendance.calculateBtn.addEventListener('click', () => this.calculateAttendance());
+            this.elements.attendance.prnNumber.addEventListener('input', () => {
+                const prn = this.elements.attendance.prnNumber.value.trim();
+                const { startDate, endDate, calculateBtn, exportBtn, prnWarning } = this.elements.attendance;
+                
+                // Enable/disable form elements based on PRN
+                startDate.disabled = !prn;
+                endDate.disabled = !prn;
+                calculateBtn.disabled = !prn;
+                exportBtn.disabled = !prn;
+                
+                // Show/hide warning
+                prnWarning.style.display = prn ? 'none' : 'block';
+                
+                // Clear results if PRN is cleared
+                if (!prn) {
+                    this.elements.attendance.results.innerHTML = '';
+                    startDate.value = '';
+                    endDate.value = '';
+                }
+            });
+            
+            this.elements.attendance.calculateBtn.addEventListener('click', () => {
+                const prn = this.elements.attendance.prnNumber.value.trim();
+                if (!prn) {
+                    this.showToast('Please enter PRN number', 'error', 2000);
+                    return;
+                }
+                this.calculateAttendance();
+            });
+            
+            this.elements.attendance.exportBtn.addEventListener('click', () => this.exportAttendancePDF());
             this.elements.attendance.detailsBody.addEventListener('click', (e) => {
                 const target = e.target.closest('button');
                 if (!target || !this.selectedDateISO) return;
@@ -623,6 +667,84 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             setInterval(() => this.updateTimetableCues(), 15000);
             lucide.createIcons();
+        },
+        exportAttendancePDF: function() {
+            const { startDate, endDate, prnNumber, results } = this.elements.attendance;
+            const prn = prnNumber.value.trim();
+            if (!prn) {
+                this.showToast('Please enter PRN number', 'error', 2000);
+                return;
+            }
+            if (!startDate.value || !endDate.value) {
+                this.showToast('Please select date range', 'error', 2000);
+                return;
+            }
+            if (!results.innerHTML) {
+                this.showToast('Please calculate attendance first', 'error', 2000);
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Add header
+            doc.setFontSize(16);
+            doc.text('Attendance Report', 105, 15, { align: 'center' });
+            
+            // Add student info
+            doc.setFontSize(12);
+            doc.text(`PRN Number: ${prn}`, 20, 30);
+            doc.text(`Class: ${this.getCurrentClassData().displayName}`, 20, 40);
+            doc.text(`Batch: ${this.selectedBatch}`, 20, 50);
+            doc.text(`Period: ${this.formatDate(new Date(startDate.value))} to ${this.formatDate(new Date(endDate.value))}`, 20, 60);
+
+            // Get attendance data
+            const stats = {};
+            const currentClassData = this.getCurrentClassData();
+            let totalHeld = 0, totalAttended = 0;
+
+            for (let d = new Date(startDate.value); d <= new Date(endDate.value); d.setDate(d.getDate() + 1)) {
+                const daySchedule = currentClassData.days.find(ds => ds.dayIndex === d.getDay());
+                if (!daySchedule) continue;
+                
+                const iso = this.dateToISO(d);
+                if (this.attendanceData[iso]) {
+                    daySchedule.slots.forEach(slot => {
+                        const periodStatus = this.attendanceData[iso].periods[slot.time];
+                        if (periodStatus) {
+                            const subject = slot.type === 'lab' ? 
+                                (slot.batches.find(b => b.name === this.selectedBatch)?.subject || slot.subject) : 
+                                slot.subject;
+                            
+                            if (!stats[subject]) stats[subject] = { held: 0, attended: 0 };
+                            stats[subject].held++;
+                            if (periodStatus === 'present') stats[subject].attended++;
+                        }
+                    });
+                }
+            }
+
+            // Create table data
+            const tableData = Object.entries(stats).map(([subject, data]) => [
+                subject,
+                data.held.toString(),
+                data.attended.toString(),
+                `${Math.round((data.attended / data.held) * 100)}%`
+            ]);
+
+            // Add table
+            doc.autoTable({
+                startY: 70,
+                head: [['Subject', 'Classes Held', 'Classes Attended', 'Percentage']],
+                body: tableData,
+                theme: 'grid',
+                headStyles: { fillColor: [26, 32, 44] }
+            });
+
+            // Save the PDF
+            const fileName = `attendance_${prn}_${this.dateToISO(new Date())}.pdf`;
+            doc.save(fileName);
+            this.showToast('PDF exported successfully', 'success', 2000);
         }
     };
     App.init();

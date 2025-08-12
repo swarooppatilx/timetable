@@ -71,6 +71,8 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJQTGJ65HD"></script>
@@ -119,6 +121,7 @@
                     <button id="todayViewBtn" class="btn px-4 py-2 sm:px-5">Today</button>
                     <button id="fullViewBtn" class="btn px-4 py-2 sm:px-5">Full Week</button>
                 </div>
+                <div id="current-date" class="text-center mb-4 text-lg font-bold"></div>
                 <div id="todayViewContent"></div>
                 <div id="fullViewContent" class="hidden">
                     <div id="mobileDaySelector" class="lg:hidden"></div>
@@ -156,11 +159,15 @@
                         <div class="card p-4">
                             <h3 class="font-bold text-xl mb-4">Active Range</h3>
                             <div class="space-y-4">
+                                <div><label for="prn-number" class="block font-bold mb-1">PRN Number <span class="text-red-500">*</span></label><input
+                                        type="text" id="prn-number" placeholder="Enter your PRN number" class="w-full card p-2"></div>
                                 <div><label for="start-date" class="block font-bold mb-1">Start Date</label><input
-                                        type="date" id="start-date" class="w-full card p-2"></div>
+                                        type="date" id="start-date" class="w-full card p-2" disabled></div>
                                 <div><label for="end-date" class="block font-bold mb-1">End Date</label><input
-                                        type="date" id="end-date" class="w-full card p-2"></div>
-                                <button id="calculate-attendance-btn" class="btn w-full py-3">Calculate</button>
+                                        type="date" id="end-date" class="w-full card p-2" disabled></div>
+                                <button id="calculate-attendance-btn" class="btn w-full py-3" disabled>Calculate Attendance</button>
+                                <button id="export-pdf-btn" class="btn w-full py-3 bg-blue-500 text-white hover:bg-blue-600" disabled>Export AS PDF</button>
+                                <p id="prn-warning" class="text-red-500 text-sm font-bold text-center">Please enter PRN number to view attendance</p>
                             </div>
                             <div id="attendance-results" class="mt-6"></div>
                         </div>
