@@ -48,6 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('attendanceData', JSON.stringify(this.attendanceData));
                 localStorage.setItem('selectedClassId', this.selectedClassId);
                 localStorage.setItem('selectedBatch', this.selectedBatch);
+
+                if (this.elements.attendance.startDate && this.elements.attendance.startDate.value) {
+                    localStorage.setItem('attendanceStartDate', this.elements.attendance.startDate.value);
+                }
+                if (this.elements.attendance.endDate && this.elements.attendance.endDate.value) {
+                    localStorage.setItem('attendanceEndDate', this.elements.attendance.endDate.value);
+                }
+                if (this.elements.attendance.examSelector && this.elements.attendance.examSelector.value) {
+                    localStorage.setItem('selectedExam', this.elements.attendance.examSelector.value);
+                }
             } catch (error) {
                 console.error('Error saving state:', error);
             }
@@ -61,6 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     const currentClassData = this.getCurrentClassData();
                     const savedBatch = localStorage.getItem('selectedBatch');
                     this.selectedBatch = (currentClassData && currentClassData.batches.includes(savedBatch)) ? savedBatch : (currentClassData ? currentClassData.batches[0] : null);
+                }
+
+                const savedStartDate = localStorage.getItem('attendanceStartDate');
+                const savedEndDate = localStorage.getItem('attendanceEndDate');
+                const savedExam = localStorage.getItem('selectedExam');
+
+                if (savedStartDate && this.elements.attendance.startDate) {
+                    this.elements.attendance.startDate.value = savedStartDate;
+                }
+                if (savedEndDate && this.elements.attendance.endDate) {
+                    this.elements.attendance.endDate.value = savedEndDate;
+                }
+                if (savedExam && this.elements.attendance.examSelector) {
+                    this.elements.attendance.examSelector.value = savedExam;
                 }
             } catch (error) {
                 console.error('Error loading state:', error);
@@ -810,21 +834,25 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.elements.attendance.examSelector) {
                 this.elements.attendance.examSelector.addEventListener('change', () => {
                     const selectedExam = this.elements.attendance.examSelector.value;
-                    if (selectedExam !== 'custom') {
-                        this.updateExamPeriodInfo();
-                        const currentClassData = this.getCurrentClassData();
-                        if (currentClassData) {
-                            const period = currentClassData.examPeriods && currentClassData.examPeriods[selectedExam];
-                            if (period) {
-                                if (this.elements.attendance.startDate) this.elements.attendance.startDate.value = period.start;
-                                if (this.elements.attendance.endDate) this.elements.attendance.endDate.value = period.end;
-                            }
-                        }
-                    } else {
-                        if (this.elements.attendance.examPeriodInfo) {
-                            this.elements.attendance.examPeriodInfo.innerHTML = `<div class="font-bold">CUSTOM Period:</div><div>Set your own date range</div>`;
+                    const currentClassData = this.getCurrentClassData();
+
+                    if (selectedExam !== 'custom' && currentClassData) {
+                        const period = currentClassData.examPeriods && currentClassData.examPeriods[selectedExam];
+                        if (period) {
+                            if (this.elements.attendance.startDate) this.elements.attendance.startDate.value = period.start;
+                            if (this.elements.attendance.endDate) this.elements.attendance.endDate.value = period.end;
+                        } else {
+                            const today = new Date();
+                            const currentMonthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+                            const currentMonthEnd = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+                            if (this.elements.attendance.startDate) this.elements.attendance.startDate.value = this.dateToISO(currentMonthStart);
+                            if (this.elements.attendance.endDate) this.elements.attendance.endDate.value = this.dateToISO(currentMonthEnd);
                         }
                     }
+
+                    this.updateExamPeriodInfo();
+                    this.saveState();
                     this.renderCalendar();
                     this.renderDayDetails(today);
                     this.calculateAttendance();
@@ -833,17 +861,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             this.updateExamPeriodInfo();
 
-            const currentClassData = this.getCurrentClassData();
-            if (currentClassData) {
-                const exam = this.elements.attendance.examSelector ? this.elements.attendance.examSelector.value : 'insem1';
-                const period = currentClassData.examPeriods && currentClassData.examPeriods[exam];
-                if (period && exam !== 'custom') {
-                    if (this.elements.attendance.startDate) this.elements.attendance.startDate.value = period.start;
-                    if (this.elements.attendance.endDate) this.elements.attendance.endDate.value = period.end;
-                }
-            }
+            const shouldSetDefaultDates = (!this.elements.attendance.startDate || !this.elements.attendance.startDate.value) ||
+                (!this.elements.attendance.endDate || !this.elements.attendance.endDate.value);
 
-            this.renderCalendar();
+            if (shouldSetDefaultDates) {
+                const currentMonthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+                const currentMonthEnd = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+                if (this.elements.attendance.startDate && !this.elements.attendance.startDate.value) {
+                    this.elements.attendance.startDate.value = this.dateToISO(currentMonthStart);
+                }
+                if (this.elements.attendance.endDate && !this.elements.attendance.endDate.value) {
+                    this.elements.attendance.endDate.value = this.dateToISO(currentMonthEnd);
+                }
+            } this.renderCalendar();
             this.renderDayDetails(today);
             this.calculateAttendance();
         },
@@ -868,22 +899,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 selector.appendChild(option);
             });
 
-            selector.value = 'insem1';
+            selector.value = 'custom';
         },
         updateExamPeriodInfo: function () {
             const currentClassData = this.getCurrentClassData();
             if (!currentClassData) return;
 
-            const exam = this.elements.attendance.examSelector ? this.elements.attendance.examSelector.value : 'insem1';
+            const exam = this.elements.attendance.examSelector ? this.elements.attendance.examSelector.value : 'custom';
             const period = currentClassData.examPeriods && currentClassData.examPeriods[exam];
 
-            if (this.elements.attendance.examPeriodInfo && period) {
-                this.elements.attendance.examPeriodInfo.innerHTML = `<div class="font-bold">${exam.toUpperCase()} Period:</div><div>${period.start} to ${period.end}</div>`;
-            }
-
-            if (period) {
-                if (this.elements.attendance.startDate) this.elements.attendance.startDate.value = period.start;
-                if (this.elements.attendance.endDate) this.elements.attendance.endDate.value = period.end;
+            if (this.elements.attendance.examPeriodInfo) {
+                if (exam === 'custom') {
+                    this.elements.attendance.examPeriodInfo.innerHTML = `<div class="font-bold">CUSTOM Period:</div><div>Set your own date range</div>`;
+                } else if (period) {
+                    this.elements.attendance.examPeriodInfo.innerHTML = `<div class="font-bold">${exam.toUpperCase()} Period:</div><div>${period.start} to ${period.end}</div>`;
+                } else {
+                    this.elements.attendance.examPeriodInfo.innerHTML = `<div class="font-bold">${exam.toUpperCase()} Period:</div><div>Using current month dates</div>`;
+                }
             }
         },
         checkAndSetCustomMode: function () {
@@ -919,12 +951,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         init: function () {
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('Service worker registered successfully'))
-                    .catch(err => console.log('Service worker registration failed: ', err));
-            }
-
             this.loadState();
             this.renderClassSelector();
             this.renderBatchSelector();
@@ -1011,6 +1037,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.elements.attendance.startDate) {
                 this.elements.attendance.startDate.addEventListener('change', () => {
                     this.checkAndSetCustomMode();
+                    this.saveState();
                     this.renderCalendar();
                     this.calculateAttendance();
                 });
@@ -1018,6 +1045,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.elements.attendance.endDate) {
                 this.elements.attendance.endDate.addEventListener('change', () => {
                     this.checkAndSetCustomMode();
+                    this.saveState();
                     this.renderCalendar();
                     this.calculateAttendance();
                 });
