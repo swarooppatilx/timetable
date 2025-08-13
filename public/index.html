@@ -7,9 +7,9 @@
 
     <title>Timetable</title>
     <meta name="description"
-        content="A clean, responsive, offline-first timetable and attendance tracker with a bold neo-brutalist design. Works perfectly on mobile, desktop, and as a PWA even without internet.">
+        content="A clean, responsive, minimalist timetable and attendance tracker with a bold neo-brutalist design. Works perfectly on mobile, desktop, and as a PWA even without internet.">
     <meta name="keywords"
-        content="timetable, schedule, attendance tracker, offline timetable app, class schedule, study planner, neo-brutalist design, progressive web app, PWA">
+        content="timetable, schedule, attendance tracker, minimalist timetable app, class schedule, study planner, neo-brutalist design, progressive web app, PWA">
     <meta name="author" content="Swaroop">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://ioit-tt.netlify.app/">
@@ -19,13 +19,13 @@
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
     <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512x512.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="Timetable, Offline Class Schedule & Attendance Tracker">
+    <meta property="og:title" content="Timetable">
     <meta property="og:description"
-        content="Track your classes and attendance in a fast, offline-first web app with a bold neo-brutalist UI.">
+        content="Track your classes and attendance in a fast, minimalist web app with a bold neo-brutalist UI.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ioit-tt.netlify.app/">
     <meta property="og:image" content="https://ioit-tt.netlify.app/assets/screenshot_week.png">
@@ -36,9 +36,9 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Timetable, Offline Class Schedule & Attendance Tracker">
+    <meta name="twitter:title" content="Timetable">
     <meta name="twitter:description"
-        content="Track your classes and attendance in a fast, offline-first web app with a bold neo-brutalist UI.">
+        content="Track your classes and attendance in a fast, minimalist web app with a bold neo-brutalist UI.">
     <meta name="twitter:image" content="https://ioit-tt.netlify.app/assets/screenshot_week.png">
     <meta name="twitter:image:alt" content="Screenshot of the Timetable app">
 
@@ -49,7 +49,7 @@
     "@type": "WebApplication",
     "name": "Timetable",
     "url": "https://ioit-tt.netlify.app/",
-    "description": "A clean, responsive, offline-first timetable and attendance tracker with a bold neo-brutalist design.",
+    "description": "A clean, responsive, minimalist timetable and attendance tracker with a bold neo-brutalist design.",
     "applicationCategory": "ProductivityApplication",
     "operatingSystem": "All",
     "author": {
@@ -64,7 +64,7 @@
     <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapispis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Icons & Scripts -->
@@ -74,7 +74,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
 
-    <!-- Google tag (gtag.js) -->
+     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJQTGJ65HD"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -83,6 +83,7 @@
 
         gtag('config', 'G-GJQTGJ65HD');
     </script>
+
 
 </head>
 
@@ -99,14 +100,16 @@
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-wider">Timetable</h1>
         </header>
 
-        <div id="selectors" class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 mb-4">
-            <div class="flex items-center gap-2">
-                <label for="classSelector" class="font-bold text-sm">CLASS:</label>
-                <select id="classSelector" class="card text-sm p-1 font-bold"></select>
+        <div id="selectors" class="w-full flex justify-end mb-4">
+            <div class="flex flex-row gap-5">
+            <div class="flex items-center gap-3">
+                <label for="classSelector" class="font-bold text-sm whitespace-nowrap">CLASS:</label>
+                <select id="classSelector" class="w-28 card text-sm p-2 font-bold"></select>
             </div>
             <div class="flex items-center gap-2">
-                <label for="batchSelector" class="font-bold text-sm">BATCH:</label>
-                <select id="batchSelector" class="card text-sm p-1 font-bold"></select>
+                <label for="batchSelector" class="font-bold text-sm whitespace-nowrap">BATCH:</label>
+                <select id="batchSelector" class="w-20 card text-sm p-2 font-bold"></select>
+            </div>
             </div>
         </div>
 
@@ -158,6 +161,14 @@
                     <div class="lg:col-span-2">
                         <div class="card p-4">
                             <h3 class="font-bold text-xl mb-4">Active Range</h3>
+                            <div class="mb-4 flex items-center gap-2">
+                                <label for="examSelector" class="font-bold text-sm">Exam:</label>
+                                <select id="examSelector" class="card text-sm p-1 font-bold">
+                                    <option value="insem1">Insem-1</option>
+                                    <option value="insem2">Insem-2</option>
+                                    <option value="endsem">Endsem</option>
+                                </select>
+                            </div>
                             <div class="space-y-4">
                                 <div><label for="prn-number" class="block font-bold mb-1">PRN Number <span class="text-red-500">*</span></label><input
                                         type="text" id="prn-number" placeholder="Enter your PRN number" class="w-full card p-2"></div>
@@ -180,13 +191,19 @@
             <button id="resetBtn" class="btn text-xs px-3 py-1 mt-4">Reset App Data</button>
         </div>
     </div>
-
+    <!-- Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('js/sw.js')
+                .catch(error => console.error('Service Worker registration failed:', error));
+        }
+    </script>
     <script src="js/data.js"></script>
     <script src="js/app.js"></script>
     </div>
 
     <footer class="w-full text-center text-xs py-2 opacity-80 select-none">
-        Made with <span class="text-red-500">♥</span> by
+        Made with <span class="text-red-500">♥</span> by 
         <a href="https://github.com/swarooppatilx" target="_blank" class="hover:underline">Swaroop</a>
     </footer>
 </body>

@@ -1,12 +1,12 @@
 # Timetable
 
-Fast, offline-first timetable and attendance tracker with a clean, punchy UI. No server. No build. Just open and use.
+Fast, minimalist timetable and attendance tracker with a clean, punchy UI. No server. No build. Just open and use.
 
 ## Features
 - Today and week views
 - Attendance with calendar
 - Everything saved locally (localStorage)
-- Installable PWA, works fully offline
+- Installable PWA
 - Handy shortcuts: mark day Present (P) / Absent (A)
 
 ---
