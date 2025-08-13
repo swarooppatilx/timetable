@@ -1294,6 +1294,159 @@ const timetableData = [
         ]
     },
     {
+        id: "ty-entc-b",
+        displayName: "TY ENTC B",
+        batches: ["T1", "T2", "T3"],
+        examPeriods: {
+            insem1: { start: "2025-07-14", end: "2025-07-25" },
+            insem2: { start: "2025-08-04", end: "2025-08-14" },
+            endsem: { start: "2025-08-25", end: "2025-10-31" }
+        },
+        days: [
+            {
+                day: "Monday",
+                dayIndex: 1,
+                slots: [
+                    {
+                        time: "08:15-09:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "DCOM Lab", teacher: "CKB", room: "306", color: "#ff3d7f" },
+                            { name: "T2", subject: "MECH Lab", teacher: "HBM", room: "303", color: "#ff9f43" },
+                            { name: "T3", subject: "MES Lab", teacher: "RNJ", room: "308", color: "#2ed573" }
+                        ]
+                    },
+                    {
+                        time: "09:15-10:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "DCOM Lab", teacher: "CKB", room: "306", color: "#ff3d7f" },
+                            { name: "T2", subject: "MECH Lab", teacher: "HBM", room: "303", color: "#ff9f43" },
+                            { name: "T3", subject: "MES Lab", teacher: "RNJ", room: "308", color: "#2ed573" }
+                        ]
+                    },
+                    { time: "10:30-11:30", type: "lecture", subject: "MES", teacher: "RNJ", room: "315", color: "#2ed573" },
+                    { time: "11:30-12:30", type: "lecture", subject: "DCOM", teacher: "CKB", room: "315", color: "#ff3d7f" },
+                    { time: "13:15-14:15", type: "lecture", subject: "Library", teacher: "", room: "", color: "#a4b0be" },
+                    {
+                        time: "14:15-15:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T3", subject: "EFT Tut", teacher: "SBP", room: "314", color: "#706fd3" }
+                        ]
+                    },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "309", color: "#00d2d3" }
+                ]
+            },
+            {
+                day: "Tuesday",
+                dayIndex: 2,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "DCOM", teacher: "CKB", room: "315", color: "#ff3d7f" },
+                    { time: "09:15-10:15", type: "lecture", subject: "IPR", teacher: "SAP", room: "315", color: "#1e90ff" },
+                    { time: "10:30-11:30", type: "lecture", subject: "MECH", teacher: "HBM", room: "315", color: "#ff9f43" },
+                    { time: "11:30-12:30", type: "lecture", subject: "EFT", teacher: "SBP", room: "315", color: "#706fd3" },
+                    {
+                        time: "13:15-14:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "EFT Tut", teacher: "SBP", room: "314", color: "#706fd3" }
+                        ]
+                    },
+                    { time: "14:15-15:15", type: "lecture", subject: "ACTIVITY", teacher: "", room: "", color: "#f78fb3" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "309", color: "#00d2d3" }
+                ]
+            },
+            {
+                day: "Wednesday",
+                dayIndex: 3,
+                slots: [
+                    {
+                        time: "08:15-09:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "MES Lab", teacher: "RNJ", room: "308", color: "#2ed573" },
+                            { name: "T2", subject: "DCOM Lab", teacher: "CKB", room: "306", color: "#ff3d7f" },
+                            { name: "T3", subject: "MECH Lab", teacher: "HBM", room: "303", color: "#ff9f43" }
+                        ]
+                    },
+                    {
+                        time: "09:15-10:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T1", subject: "MES Lab", teacher: "RNJ", room: "308", color: "#2ed573" },
+                            { name: "T2", subject: "DCOM Lab", teacher: "CKB", room: "306", color: "#ff3d7f" },
+                            { name: "T3", subject: "MECH Lab", teacher: "HBM", room: "303", color: "#ff9f43" }
+                        ]
+                    },
+                    { time: "10:30-11:30", type: "lecture", subject: "MES", teacher: "RNJ", room: "315", color: "#2ed573" },
+                    { time: "11:30-12:30", type: "lecture", subject: "MECH", teacher: "HBM", room: "315", color: "#ff9f43" },
+                    { time: "13:15-14:15", type: "lecture", subject: "DCOM", teacher: "CKB", room: "315", color: "#ff3d7f" },
+                    { time: "14:15-15:15", type: "lecture", subject: "MOOCS-IOT", teacher: "", room: "315", color: "#00b894" },
+                    { time: "15:15-16:15", type: "lecture", subject: "Remedial", teacher: "", room: "", color: "#f78fb3" }
+                ]
+            },
+            {
+                day: "Thursday",
+                dayIndex: 4,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "Audit Course", teacher: "VP", room: "309", color: "#575fcf" },
+                    { time: "09:15-10:15", type: "lecture", subject: "MECH", teacher: "HBM", room: "315", color: "#ff9f43" },
+                    { time: "10:30-11:30", type: "lecture", subject: "IPR", teacher: "SAP", room: "315", color: "#1e90ff" },
+                    { time: "11:30-12:30", type: "lecture", subject: "EFT", teacher: "SBP", room: "315", color: "#706fd3" },
+                    { time: "13:15-14:15", type: "lecture", subject: "CCRP", teacher: "", room: "315", color: "#ff4757" },
+                    { time: "14:15-15:15", type: "lecture", subject: "CCRP", teacher: "", room: "315", color: "#ff4757" },
+                    { time: "15:15-16:15", type: "lecture", subject: "MINOR", teacher: "", room: "309", color: "#00d2d3" }
+                ]
+            },
+            {
+                day: "Friday",
+                dayIndex: 5,
+                slots: [
+                    { time: "08:15-09:15", type: "lecture", subject: "MES", teacher: "RNJ", room: "315", color: "#2ed573" },
+                    { time: "09:15-10:15", type: "lecture", subject: "DCOM", teacher: "CKB", room: "315", color: "#ff3d7f" },
+                    {
+                        time: "10:30-11:30",
+                        type: "lab",
+                        batches: [
+                            { name: "T2", subject: "MES Lab", teacher: "RNJ", room: "308", color: "#2ed573" },
+                            { name: "T3", subject: "DCOM Lab", teacher: "CKB", room: "306", color: "#ff3d7f" },
+                            { name: "T1", subject: "MECH Lab", teacher: "HBM", room: "303", color: "#ff9f43" }
+                        ]
+                    },
+                    {
+                        time: "11:30-12:30",
+                        type: "lab",
+                        batches: [
+                            { name: "T2", subject: "MES Lab", teacher: "RNJ", room: "308", color: "#2ed573" },
+                            { name: "T3", subject: "DCOM Lab", teacher: "CKB", room: "306", color: "#ff3d7f" },
+                            { name: "T1", subject: "MECH Lab", teacher: "HBM", room: "303", color: "#ff9f43" }
+                        ]
+                    },
+                    { time: "13:15-14:15", type: "lecture", subject: "EFT", teacher: "SBP", room: "315", color: "#706fd3" },
+                    {
+                        time: "14:15-15:15",
+                        type: "lab",
+                        batches: [
+                            { name: "T2", subject: "EFT Tut", teacher: "SBP", room: "314", color: "#706fd3" }
+                        ]
+                    }
+                ]
+            }
+        ],
+        timeSlots: [
+            { start: "08:15", end: "09:15" },
+            { start: "09:15", end: "10:15" },
+            { start: "10:15", end: "10:30", label: "Tea Break" },
+            { start: "10:30", end: "11:30" },
+            { start: "11:30", end: "12:30" },
+            { start: "12:30", end: "13:15", label: "Lunch Break" },
+            { start: "13:15", end: "14:15" },
+            { start: "14:15", end: "15:15" },
+            { start: "15:15", end: "16:15" }
+        ]
+    },
+    {
         id: "ty-elec",
         displayName: "TY Elec",
         batches: ["T1", "T2", "T3"],
