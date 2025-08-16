@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 todayContent: document.getElementById('todayViewContent'),
                 fullContent: document.getElementById('fullViewContent'),
                 fullGrid: document.getElementById('fullViewGrid'),
-                mobileDaySelector: document.getElementById('mobileDaySelector')
+                mobileDaySelector: document.getElementById('mobileDaySelector'),
+                currentDate: document.getElementById('current-date')
             },
             attendance: {
                 monthYearHeader: document.getElementById('month-year-header'),
@@ -31,10 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 detailsBody: document.getElementById('day-details-body'),
                 startDate: document.getElementById('start-date'),
                 endDate: document.getElementById('end-date'),
+                prnNumber: document.getElementById('prn-number'),
                 calculateBtn: document.getElementById('calculate-attendance-btn'),
-                results: document.getElementById('attendance-results'),
-                examSelector: document.getElementById('examSelector'),
-                examPeriodInfo: document.getElementById('exam-period-info'),
+
             },
         },
         timeToMinutes: function (t) {
@@ -290,14 +290,18 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="progress-bar"></div>
     </div>`;
         },
+        formatDate: function(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        },
         renderTodayView: function () {
             const currentClassData = this.getCurrentClassData();
             if (!currentClassData || !this.elements.timetable.todayContent) return;
 
             const today = new Date();
             const dayIndex = today.getDay();
-            const daySchedule = currentClassData.days ? currentClassData.days.find(d => d.dayIndex === dayIndex) : null;
-            const { todayContent } = this.elements.timetable;
 
             todayContent.innerHTML = '';
 
@@ -956,157 +960,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.renderBatchSelector();
             this.switchView('timetable');
 
-            if (this.elements.classSelector) {
-                this.elements.classSelector.addEventListener('change', (e) => {
-                    this.selectedClassId = e.target.value;
-                    const newClassData = this.getCurrentClassData();
-                    if (newClassData && newClassData.batches) {
-                        this.selectedBatch = newClassData.batches[0];
-                        this.renderBatchSelector();
-                        this.saveState();
-                        this.rerenderCurrentView();
-
-                        this.updateExamPeriodInfo();
-                        const exam = this.elements.attendance.examSelector ? this.elements.attendance.examSelector.value : 'insem1';
-                        const period = newClassData.examPeriods && newClassData.examPeriods[exam];
-                        if (period) {
-                            if (this.elements.attendance.startDate) this.elements.attendance.startDate.value = period.start;
-                            if (this.elements.attendance.endDate) this.elements.attendance.endDate.value = period.end;
-                        }
-                    }
-                });
-            }
-
-            if (this.elements.batchSelector) {
-                this.elements.batchSelector.addEventListener('change', (e) => {
-                    this.selectedBatch = e.target.value;
-                    this.saveState();
-                    this.rerenderCurrentView();
-                });
-            }
-
-            if (this.elements.resetBtn) {
-                this.elements.resetBtn.addEventListener('click', () => {
-                    this.resetAppData();
-                });
-            }
-
-            if (this.elements.viewBtns.timetable) {
-                this.elements.viewBtns.timetable.addEventListener('click', () => this.switchView('timetable'));
-            }
-            if (this.elements.viewBtns.attendance) {
-                this.elements.viewBtns.attendance.addEventListener('click', () => this.switchView('attendance'));
-            }
-
-            if (this.elements.timetable.todayBtn) {
-                this.elements.timetable.todayBtn.addEventListener('click', () => {
-                    if (this.elements.timetable.todayContent) this.elements.timetable.todayContent.classList.remove('hidden');
-                    if (this.elements.timetable.fullContent) this.elements.timetable.fullContent.classList.add('hidden');
-                    this.elements.timetable.todayBtn.classList.add('btn-active');
-                    if (this.elements.timetable.fullBtn) this.elements.timetable.fullBtn.classList.remove('btn-active');
-                    this.renderTodayView();
-                    this.updateTimetableCues();
-                });
-            }
-
-            if (this.elements.timetable.fullBtn) {
-                this.elements.timetable.fullBtn.addEventListener('click', () => {
-                    if (this.elements.timetable.todayContent) this.elements.timetable.todayContent.classList.add('hidden');
-                    if (this.elements.timetable.fullContent) this.elements.timetable.fullContent.classList.remove('hidden');
-                    if (this.elements.timetable.todayBtn) this.elements.timetable.todayBtn.classList.remove('btn-active');
-                    this.elements.timetable.fullBtn.classList.add('btn-active');
-                    this.renderFullView();
-                    this.updateTimetableCues();
-                });
-            }
-
-            if (this.elements.attendance.prevMonthBtn) {
-                this.elements.attendance.prevMonthBtn.addEventListener('click', () => {
-                    this.calendarDate.setMonth(this.calendarDate.getMonth() - 1);
-                    this.renderCalendar();
-                });
-            }
-
-            if (this.elements.attendance.nextMonthBtn) {
-                this.elements.attendance.nextMonthBtn.addEventListener('click', () => {
-                    this.calendarDate.setMonth(this.calendarDate.getMonth() + 1);
-                    this.renderCalendar();
-                });
-            }
-
-            if (this.elements.attendance.startDate) {
-                this.elements.attendance.startDate.addEventListener('change', () => {
-                    this.checkAndSetCustomMode();
-                    this.saveState();
-                    this.renderCalendar();
-                    this.calculateAttendance();
-                });
-            }
-            if (this.elements.attendance.endDate) {
-                this.elements.attendance.endDate.addEventListener('change', () => {
-                    this.checkAndSetCustomMode();
-                    this.saveState();
-                    this.renderCalendar();
-                    this.calculateAttendance();
-                });
-            }
-
-            if (this.elements.attendance.calculateBtn) {
-                this.elements.attendance.calculateBtn.addEventListener('click', () => this.calculateAttendance());
-            }
-
-            if (this.elements.attendance.detailsBody) {
-                this.elements.attendance.detailsBody.addEventListener('click', (e) => {
-                    const target = e.target.closest('button');
-                    if (!target || !this.selectedDateISO) return;
-
-                    const { action, time, status } = target.dataset;
-                    const date = new Date(this.selectedDateISO.replace(/-/g, '/'));
-
-                    if (action === 'mark-all-present' || action === 'mark-all-absent') {
-                        const bulkStatus = action.includes('present') ? 'present' : 'absent';
-                        this.handleBulkMark(bulkStatus);
-                        return;
-                    }
-
-                    const currentClassData = this.getCurrentClassData();
-                    if (!currentClassData) return;
-
-                    const daySchedule = currentClassData.days ? currentClassData.days.find(d => d.dayIndex === date.getDay()) : null;
-                    if (!daySchedule) return;
-
-                    if (!this.attendanceData[this.selectedDateISO]) {
-                        this.attendanceData[this.selectedDateISO] = { status: null, periods: {} };
-                    }
-
-                    if (time && status) {
-                        const currentStatus = this.attendanceData[this.selectedDateISO].periods[time];
-                        this.attendanceData[this.selectedDateISO].periods[time] = currentStatus === status ? undefined : status;
-
-                        if (daySchedule.slots) {
-                            const allPeriods = daySchedule.slots.map(s => this.attendanceData[this.selectedDateISO].periods[s.time]).filter(p => p !== undefined);
-
-                            if (allPeriods.length > 0) {
-                                if (allPeriods.every(p => p === 'present')) {
-                                    this.attendanceData[this.selectedDateISO].status = 'present';
-                                } else if (allPeriods.some(p => p === 'absent')) {
-                                    this.attendanceData[this.selectedDateISO].status = 'absent';
-                                } else {
-                                    this.attendanceData[this.selectedDateISO].status = null;
-                                }
-                            } else {
-                                this.attendanceData[this.selectedDateISO].status = null;
-                            }
-                        }
-
-                        this.saveState();
-                        this.showToast();
-                        this.renderDayDetails(date);
-                        this.renderCalendar();
-                    }
-                });
-            }
-
             document.addEventListener('keydown', (e) => {
                 if (this.elements.views.attendance.classList.contains('hidden') || document.activeElement.tagName === 'INPUT') return;
 
@@ -1120,9 +973,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
         }
     };
 
